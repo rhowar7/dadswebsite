@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="View 122+ photos of completed home improvement projects. Bathrooms, kitchens, decks, roofing, siding, painting & more. Walter's Home Improvement." />
+  <meta name="keywords" content="home improvement photos, bathroom remodel before and after, kitchen remodel, deck projects, home renovation gallery" />
+  <meta property="og:title" content="Project Gallery - Walter's Home Improvement" />
+  <meta property="og:description" content="Browse 122+ photos of our completed home improvement projects across Maryland." />
+  <meta property="og:type" content="website" />
+  <title>Project Gallery - Walter's Home Improvement | 122+ Project Photos</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.92);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox img {
+      max-width: 92vw;
+      max-height: 88vh;
+      border-radius: 6px;
+      object-fit: contain;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.6);
+    }
+    .lightbox-close {
+      position: absolute;
+      top: 1.2rem;
+      right: 1.5rem;
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 2.2rem;
+      cursor: pointer;
+      line-height: 1;
+    }
+    .lightbox-prev,
+    .lightbox-next {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255,255,255,0.15);
+      border: none;
+      color: #fff;
+      font-size: 2rem;
+      padding: 0.6rem 1rem;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: background 0.2s;
+    }
+    .lightbox-prev:hover,
+    .lightbox-next:hover { background: rgba(255,255,255,0.3); }
+    .lightbox-prev { left: 1rem; }
+    .lightbox-next { right: 1rem; }
+    .lightbox-counter {
+      position: absolute;
+      bottom: 1.2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      color: rgba(255,255,255,0.7);
+      font-size: 0.9rem;
+    }
+    
+    /* Gallery Filters */
+    .gallery-filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin-bottom: 2.5rem;
+      justify-content: center;
+    }
+    .filter-btn {
+      padding: 0.6rem 1.5rem;
+      border: 2px solid var(--gray-light);
+      background: var(--white);
+      border-radius: 25px;
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--navy);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .filter-btn:hover {
+      border-color: var(--navy);
+      background: var(--navy);
+      color: var(--white);
+    }
+    .filter-btn.active {
+      background: var(--navy);
+      color: var(--white);
+      border-color: var(--navy);
+    }
+    .gallery-item { transition: opacity 0.3s ease; }
+    .gallery-item.hidden { display: none; }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-brand">
+        <img src="images/NewLogo.jpg" alt="Walter's Home Improvement" height="50" style="display:block;" />
+      </a>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="reviews.html">Reviews</a></li>
+        <li><a href="gallery.html" class="active">Gallery</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="estimate.html">Get Estimate</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- PAGE HEADER -->
+  <div class="page-header">
+    <h1>Project Gallery</h1>
+    <p>A look at our recent work around the neighborhood.</p>
+  </div>
+
+  <!-- GALLERY -->
+  <section class="section">
+    <h2 class="section-title">Our Work</h2>
+    <div class="divider"></div>
+    <p class="section-subtitle">Every project is completed with care, precision, and pride in our craft.</p>
+
+    <!-- Filter Buttons -->
+    <div class="gallery-filters">
+      <button class="filter-btn active" data-filter="all">All Projects</button>
+      <button class="filter-btn" data-filter="bathrooms">Bathrooms</button>
+      <button class="filter-btn" data-filter="kitchens">Kitchens</button>
+      <button class="filter-btn" data-filter="decks">Decks & Outdoor</button>
+      <button class="filter-btn" data-filter="siding">Siding & Exterior</button>
+      <button class="filter-btn" data-filter="other">Flooring & Other</button>
+    </div>
+
+    <div class="gallery-grid" id="galleryGrid">
+      <div class="gallery-item" data-index="0" data-category="kitchens"><div class="gallery-img-wrap"><img src="images/468917837_598960172707796_4392995363642965109_n.jpg" alt="Kitchen remodel with white cabinets and granite countertops" loading="lazy" /><div class="gallery-overlay">View Photo</div></div></div>
+      <div class="gallery-item" data-index="1" data-category="kitchens"><div class="gallery-img-wrap"><img src="images/469054715_598960186041128_8977828184486520472_n.jpg" alt="Kitchen tile flooring installation" loading="lazy" /><div class="gallery-overlay">View Photo</div></div></div>
+      <div class="gallery-item" data-index="2" data-category="bathrooms"><div class="gallery-img-wrap"><img src="images/469060113_598959989374481_8005011486067409336_n.jpg" alt="Hexagon mosaic tile shower floor" loading="lazy" /><div class="gallery-overlay">View Photo</div></div></div>
+      <div class="gallery-item" data-index="3" data-category="bathrooms"><div class="gallery-img-wrap"><img src="images/469068295_598960359374444_1235283163084963995_n.jpg" alt="Bathroom shower with stone tile and glass enclosure" loading="lazy" /><div class="gallery-overlay">View Photo</div></div></div>
+      <div class="gallery-item" data-index="4" data-category="bathrooms"><div class="gallery-img-wrap"><img src="images/469069036_598960026041144_3615970573676701971_n.jpg" alt="Bathroom shower tile with marble hexagon accent strip" loading="lazy" /><div class="gallery-overlay">View Photo</div></div></div>
+      <div class="gallery-item" data-index="5" data-category="kitchens"><div class="gallery-img-wrap"><img src="images/469280556_598960316041115_6942750839963618547_n.jpg" alt="Kitchen remodel with white cabinets and tile floor" loading="lazy" /><div class="gallery-overlay">View Photo</div></div></div>
+      <div class="gallery-item" data-index="6" data-category="bathrooms"><div class="gallery-img-wrap"><img src="images/469312755_598960166041130_4458184962779155438_n.jpg" alt="Stone tile shower with frameless glass door" loading="lazy" /><div class="gallery-overlay">View Photo</div></div></div>
+      <div class="gallery-item" data-index="7" data-category="kitchens"><div class="gallery-img-wrap"><img src="images/469327074_598960179374462_5671155366752172906_n (1).jpg" alt="Kitchen remodel with stone mosaic backsplash and granite countertops" loading="lazy" /><div class="gallery-overlay">View Photo</div></div></div>
+      <div class="gallery-item" data-index="8" data-category="kitchens"><div class="gallery-img-wrap"><img src="images/469327074_598960179374462_5671155366752172906_n (2).jpg" alt="Kitchen remodel detail" loading="lazy" /><div class="gallery-overlay">View Photo</div></div></div>
+      <div class="gallery-item" data-index="9" data-category="kitchens"><div class="gallery-img-wrap"><img src="images/469327074_598960179374462_5671155366752172906_n (3).jpg" alt="Kitchen remodel detail" loading="lazy" /><div class="gallery-overlay">View Photo</div></div></div>
+      <div class="gallery-item" data-index="10" data-category="other"><div class="gallery-img-wrap"><img src="images/469340448_598960516041095_1353663974947487406_n.jpg" alt="Foyer and entryway with new tile flooring" loading="lazy" /><div class="gallery-overlay">View Photo</div></div></div>
+      <div class="gallery-item" data-index="11" data-category="bathrooms"><div class="gallery-img-wrap"><img src="images/469356996_598960512707762_5288148795746564193_n.jpg" alt="Ceramic tile shower surround" loading="lazy" /><div class="gallery-overlay">View Photo</div></div></div>
+      <div class="gallery-item" data-index="12" data-category="other"><div class="gallery-img-wrap"><img src="images/469384157_598960356041111_2681682371082480057_n.jpg" alt="Stamped concrete patio with decorative steps" loading="lazy" /><div class="gallery-overlay">View Photo</div></div></div>
+      <div class="gallery-item" data-index="13" data-category="decks"><div class="gallery-img-wrap"><img src="images/469792279_604267038843776_2918372920635893567_n.jpg" alt="Pressure-treated deck build with stairs on back of house" loading="lazy" /><div class="gallery-overlay">View Photo</div></div></div>
+      <div class="gallery-item" data-index="14" data-category="bathrooms"><div class="gallery-img-wrap"><img src="images/469792790_604266825510464_5518029663481596237_n.jpg" alt="Bathroom shower remodel with frameless glass door and tile" loading="lazy" /><div class="gallery-overlay">View Photo</div></div></div>
+      <div class="gallery-item" data-index="15" data-category="decks"><div class="gallery-img-wrap"><img src="images/469794219_604266972177116_162021975549140524_n.jpg" alt="Elevated pressure-treated deck with stairs" loading="lazy" /><div class="gallery-overlay">View Photo</div></div></div>
+      <div class="gallery-item" data-index="16" data-category="bathrooms"><div class="gallery-img-wrap"><img src="images/469797041_604266875510459_5437632338137401609_n.jpg" alt="Bathroom tub and shower combo with tile walls and octagon window" loading="lazy" /><div class="gallery-overlay">View Photo</div></div></div>
+      <div class="gallery-item" data-index="17" data-category="other"><div class="gallery-img-wrap"><img src="images/469798453_604267812177032_7077985023241179798_n.jpg" alt="New plank flooring installation" loading="lazy" /><div class="gallery-overlay">View Photo</div></div></div>
+      <div class="gallery-item" data-index="18" data-category="other"><div class="gallery-img-wrap"><img src="images/469798453_604267812177032_7077985023241179798_n (1).jpg" alt="New plank flooring installation in dining area" loading="lazy" /><div class="gallery-overlay">View Photo</div></div></div>
+      <div class="gallery-item" data-index="19" data-category="bathrooms"><div class="gallery-img-wrap"><img src="images/469800303_604266662177147_3682357505085647304_n.jpg" alt="Bathroom shower with glass sliding door and white subway tile" loading="lazy" /><div class="gallery-overlay">View Photo</div></div></div>
+      <div class="gallery-item" data-index="20" data-category="decks"><div class="gallery-img-wrap"><img src="images/469901775_604266822177131_8682149838933231815_n.jpg" alt="Covered porch addition with ceiling fan and outdoor furniture" loading="lazy" /><div class="gallery-overlay">View Photo</div></div></div>
+      <div class="gallery-item" data-index="21" data-category="bathrooms"><div class="gallery-img-wrap"><img src="images/469920376_604266695510477_4769213215063635563_n.jpg" alt="Master bathroom remodel with freestanding tub and walk-in tile shower" loading="lazy" /><div class="gallery-overlay">View Photo</div></div></div>
+      <div class="gallery-item" data-index="22" data-category="siding"><div class="gallery-img-wrap"><img src="images/469928540_604267012177112_5290904890683240457_n.jpg" alt="House exterior with new siding installation" loading="lazy" /><div class="gallery-overlay">View Photo</div></div></div>
+      <div class="gallery-item" data-index="23" data-category="kitchens"><div class="gallery-img-wrap"><img src="images/469930539_604266798843800_1288957857041031147_n.jpg" alt="Kitchen before remodel with existing cabinets" loading="lazy" /><div class="gallery-overlay">View Photo</div></div></div>
+      <div class="gallery-item" data-index="24" data-category="kitchens"><div class="gallery-img-wrap"><img src="images/469930951_604266745510472_7309024063734482301_n.jpg" alt="Kitchen remodel with white cabinets, island, and hardwood floors" loading="lazy" /><div class="gallery-overlay">View Photo</div></div></div>
+      <div class="gallery-item" data-index="25" data-category="kitchens"><div class="gallery-img-wrap"><img src="images/469931567_604267885510358_8858479463770053695_n.jpg" alt="Kitchen with wood cabinets and tile floor" loading="lazy" /><div class="gallery-overlay">View Photo</div></div></div>
+      <div class="gallery-item" data-index="26" data-category="kitchens"><div class="gallery-img-wrap"><img src="images/469931567_604267885510358_8858479463770053695_n (1).jpg" alt="Kitchen with wood cabinets and updated tile flooring" loading="lazy" /><div class="gallery-overlay">View Photo</div></div></div>
+      <div class="gallery-item" data-index="27" data-category="bathrooms"><div class="gallery-img-wrap"><img src="images/469969278_604266698843810_4173337286265709613_n.jpg" alt="Bathroom with clawfoot tub and wainscoting" loading="lazy" /><div class="gallery-overlay">View Photo</div></div></div>
+      <div class="gallery-item" data-index="28" data-category="decks"><div class="gallery-img-wrap"><img src="images/469969925_604267045510442_4449944546144782488_n.jpg" alt="Composite deck with black metal railing" loading="lazy" /><div class="gallery-overlay">View Photo</div></div></div>
+      <div class="gallery-item" data-index="29" data-category="decks"><div class="gallery-img-wrap"><img src="images/469981913_604266735510473_7958627480631772228_n.jpg" alt="Composite deck with white railing and step lighting" loading="lazy" /><div class="gallery-overlay">View Photo</div></div></div>
+      <div class="gallery-item" data-index="30" data-category="decks"><div class="gallery-img-wrap"><img src="images/469982106_604266995510447_5233274699003462931_n.jpg" alt="Gray composite deck with black metal railing" loading="lazy" /><div class="gallery-overlay">View Photo</div></div></div>
+      <div class="gallery-item" data-index="31" data-category="decks"><div class="gallery-img-wrap"><img src="images/470043545_604266838843796_7308691180477622952_n.jpg" alt="Covered porch addition with white columns and railings" loading="lazy" /><div class="gallery-overlay">View Photo</div></div></div>
+      <div class="gallery-item" data-index="32" data-category="bathrooms"><div class="gallery-img-wrap"><img src="images/470060864_604266882177125_337319679168049871_n.jpg" alt="Bathroom remodel with freestanding tub and frameless glass shower" loading="lazy" /><div class="gallery-overlay">View Photo</div></div></div>
+      <div class="gallery-item" data-index="33" data-category="other"><div class="gallery-img-wrap"><img src="images/470076784_604267042177109_6806057666459142188_n.jpg" alt="Paver walkway installation" loading="lazy" /><div class="gallery-overlay">View Photo</div></div></div>
+      <div class="gallery-item" data-index="34" data-category="kitchens"><div class="gallery-img-wrap"><img src="images/470086205_604266612177152_5307626397710960313_n.jpg" alt="Kitchen remodel with white shaker cabinets and granite island" loading="lazy" /><div class="gallery-overlay">View Photo</div></div></div>
+      <div class="gallery-item" data-index="35" data-category="bathrooms"><div class="gallery-img-wrap"><img src="images/470086412_604266615510485_2631837733401361939_n.jpg" alt="Walk-in shower with white subway tile and frameless glass door" loading="lazy" /><div class="gallery-overlay">View Photo</div></div></div>
+      <div class="gallery-item" data-index="36" data-category="decks"><div class="gallery-img-wrap"><img src="images/470087458_604266868843793_3533790342271227478_n.jpg" alt="Elevated pressure-treated deck with stairs on back of house" loading="lazy" /><div class="gallery-overlay">View Photo</div></div></div>
+      <div class="gallery-item" data-index="37" data-category="bathrooms"><div class="gallery-img-wrap"><img src="images/470130901_604266682177145_8866535896523768724_n.jpg" alt="Frameless glass shower with large format marble tile" loading="lazy" /><div class="gallery-overlay">View Photo</div></div></div>
+      <div class="gallery-item" data-index="38" data-category="bathrooms"><div class="gallery-img-wrap"><img src="images/470170580_605479325389214_8818592383256207584_n.jpg" alt="Bathroom remodel with freestanding tub and shower" loading="lazy" /><div class="gallery-overlay">View Photo</div></div></div>
+      <div class="gallery-item" data-index="39" data-category="bathrooms"><div class="gallery-img-wrap"><img src="images/470170580_605479325389214_8818592383256207584_n (1).jpg" alt="Bathroom remodel with freestanding tub and shower detail" loading="lazy" /><div class="gallery-overlay">View Photo</div></div></div>
+      <div class="gallery-item" data-index="40" data-category="bathrooms"><div class="gallery-img-wrap"><img src="images/470172306_604267058843774_4585589275804146652_n.jpg" alt="Bathroom with freestanding tub and frameless glass shower" loading="lazy" /><div class="gallery-overlay">View Photo</div></div></div>
+      <div class="gallery-item" data-index="41" data-category="bathrooms"><div class="gallery-img-wrap"><img src="images/470173310_604266622177151_8381389229356469565_n.jpg" alt="Bathroom shower with glass sliding door and tile" loading="lazy" /><div class="gallery-overlay">View Photo</div></div></div>
+      <div class="gallery-item" data-index="42" data-category="kitchens"><div class="gallery-img-wrap"><img src="images/470173610_604266828843797_7102076533589677417_n.jpg" alt="Kitchen remodel with white cabinets, island, and hardwood floors" loading="lazy" /><div class="gallery-overlay">View Photo</div></div></div>
+      <div class="gallery-item" data-index="43" data-category="bathrooms"><div class="gallery-img-wrap"><img src="images/470173864_604266872177126_7199608696422742242_n.jpg" alt="Frameless glass shower with white tile walls" loading="lazy" /><div class="gallery-overlay">View Photo</div></div></div>
+      <div class="gallery-item" data-index="44" data-category="decks"><div class="gallery-img-wrap"><img src="images/470173884_604266958843784_4983926025867088_n.jpg" alt="Composite deck with white and black metal railing" loading="lazy" /><div class="gallery-overlay">View Photo</div></div></div>
+      <div class="gallery-item" data-index="45" data-category="bathrooms"><div class="gallery-img-wrap"><img src="images/470174564_604266625510484_6220679843727327736_n.jpg" alt="Bathroom shower with travertine tile and frameless glass" loading="lazy" /><div class="gallery-overlay">View Photo</div></div></div>
+      <div class="gallery-item" data-index="46" data-category="siding"><div class="gallery-img-wrap"><img src="images/470175479_605479185389228_2337300550703062153_n.jpg" alt="House exterior with new vinyl siding" loading="lazy" /><div class="gallery-overlay">View Photo</div></div></div>
+      <div class="gallery-item" data-index="47" data-category="siding"><div class="gallery-img-wrap"><img src="images/470175479_605479185389228_2337300550703062153_n (1).jpg" alt="House exterior with new siding and deck" loading="lazy" /><div class="gallery-overlay">View Photo</div></div></div>
+      <div class="gallery-item" data-index="48" data-category="bathrooms"><div class="gallery-img-wrap"><img src="images/470176197_604266962177117_3698534254084899071_n.jpg" alt="Bathroom with glass shower enclosure and jetted soaking tub" loading="lazy" /><div class="gallery-overlay">View Photo</div></div></div>
+      <div class="gallery-item" data-index="49" data-category="bathrooms"><div class="gallery-img-wrap"><img src="images/470178248_604266772177136_5035603731384110708_n.jpg" alt="Bathroom with freestanding soaking tub and wainscoting" loading="lazy" /><div class="gallery-overlay">View Photo</div></div></div>
+      <div class="gallery-item" data-index="50" data-category="bathrooms"><div class="gallery-img-wrap"><img src="images/470178475_604266982177115_6016257473353095909_n.jpg" alt="Bathroom tub and shower combo with tile and octagon window" loading="lazy" /><div class="gallery-overlay">View Photo</div></div></div>
+      <div class="gallery-item" data-index="51" data-category="bathrooms"><div class="gallery-img-wrap"><img src="images/470182750_604266652177148_5765796464376076267_n.jpg" alt="Walk-in shower with horizontal plank tile" loading="lazy" /><div class="gallery-overlay">View Photo</div></div></div>
+      <div class="gallery-item" data-index="52" data-category="bathrooms"><div class="gallery-img-wrap"><img src="images/470185974_604266688843811_6028303521662865661_n.jpg" alt="Stone tile shower with frameless glass door" loading="lazy" /><div class="gallery-overlay">View Photo</div></div></div>
+      <div class="gallery-item" data-index="53" data-category="siding"><div class="gallery-img-wrap"><img src="images/470186439_605479425389204_9029043948128750672_n.jpg" alt="House exterior with new siding and elevated deck with stairs" loading="lazy" /><div class="gallery-overlay">View Photo</div></div></div>
+      <div class="gallery-item" data-index="54" data-category="siding"><div class="gallery-img-wrap"><img src="images/470186439_605479425389204_9029043948128750672_n (1).jpg" alt="House exterior with new siding detail" loading="lazy" /><div class="gallery-overlay">View Photo</div></div></div>
+      <div class="gallery-item" data-index="55" data-category="other"><div class="gallery-img-wrap"><img src="images/470187616_604267008843779_7501600216774408090_n.jpg" alt="Covered porch and patio addition with columns" loading="lazy" /><div class="gallery-overlay">View Photo</div></div></div>
+      <div class="gallery-item" data-index="56" data-category="bathrooms"><div class="gallery-img-wrap"><img src="images/470188609_604266618843818_2243950410113845959_n.jpg" alt="Double vanity bathroom remodel with new fixtures" loading="lazy" /><div class="gallery-overlay">View Photo</div></div></div>
+      <div class="gallery-item" data-index="57" data-category="siding"><div class="gallery-img-wrap"><img src="images/470188988_604266932177120_2973055033104807271_n.jpg" alt="House exterior with covered porch and deck addition" loading="lazy" /><div class="gallery-overlay">View Photo</div></div></div>
+      <div class="gallery-item" data-index="58" data-category="siding"><div class="gallery-img-wrap"><img src="images/470189017_604266912177122_8983506294378210819_n.jpg" alt="Screened porch addition" loading="lazy" /><div class="gallery-overlay">View Photo</div></div></div>
+      <div class="gallery-item" data-index="59" data-category="bathrooms"><div class="gallery-img-wrap"><img src="images/470189163_604266768843803_3985188361236407637_n.jpg" alt="Bathroom wainscoting and large format tile floor" loading="lazy" /><div class="gallery-overlay">View Photo</div></div></div>
+      <div class="gallery-item" data-index="60" data-category="decks"><div class="gallery-img-wrap"><img src="images/470196517_604266865510460_7316629597089257670_n.jpg" alt="Composite deck with steps and black metal railing" loading="lazy" /><div class="gallery-overlay">View Photo</div></div></div>
+      <div class="gallery-item" data-index="61" data-category="decks"><div class="gallery-img-wrap"><img src="images/470196846_604267015510445_7834194499158768662_n.jpg" alt="Covered porch with ceiling fan and white railings" loading="lazy" /><div class="gallery-overlay">View Photo</div></div></div>
+      <div class="gallery-item" data-index="62" data-category="decks"><div class="gallery-img-wrap"><img src="images/470197334_604266692177144_509694744473799404_n.jpg" alt="Elevated deck with stairs" loading="lazy" /><div class="gallery-overlay">View Photo</div></div></div>
+      <div class="gallery-item" data-index="63" data-category="decks"><div class="gallery-img-wrap"><img src="images/470201725_604266732177140_6083694743268106448_n.jpg" alt="Screened porch addition under construction" loading="lazy" /><div class="gallery-overlay">View Photo</div></div></div>
+      <div class="gallery-item" data-index="64" data-category="bathrooms"><div class="gallery-img-wrap"><img src="images/470205969_604266792177134_1906951095019877631_n.jpg" alt="Bathroom shower with stone tile" loading="lazy" /><div class="gallery-overlay">View Photo</div></div></div>
+      <div class="gallery-item" data-index="65" data-category="bathrooms"><div class="gallery-img-wrap"><img src="images/470206138_604267055510441_4028444999450946628_n.jpg" alt="Bathroom vanity remodel with new mirror and fixtures" loading="lazy" /><div class="gallery-overlay">View Photo</div></div></div>
+      <div class="gallery-item" data-index="66" data-category="bathrooms"><div class="gallery-img-wrap"><img src="images/470208147_604266702177143_2880483880002985097_n.jpg" alt="Bathroom remodel with glass shower and updated vanity" loading="lazy" /><div class="gallery-overlay">View Photo</div></div></div>
+      <div class="gallery-item" data-index="67" data-category="decks"><div class="gallery-img-wrap"><img src="images/470208770_604266718843808_1900626128399653328_n.jpg" alt="Multi-level composite deck with outdoor furniture" loading="lazy" /><div class="gallery-overlay">View Photo</div></div></div>
+      <div class="gallery-item" data-index="68" data-category="bathrooms"><div class="gallery-img-wrap"><img src="images/470210271_604266832177130_2133401833830188241_n.jpg" alt="Glass shower with white subway tile and decorative accent tiles" loading="lazy" /><div class="gallery-overlay">View Photo</div></div></div>
+      <div class="gallery-item" data-index="69" data-category="kitchens"><div class="gallery-img-wrap"><img src="images/470211150_604267025510444_1493998338960857410_n.jpg" alt="Kitchen with new tile flooring" loading="lazy" /><div class="gallery-overlay">View Photo</div></div></div>
+      <div class="gallery-item" data-index="70" data-category="bathrooms"><div class="gallery-img-wrap"><img src="images/470223783_604266898843790_3703887429629729522_n.jpg" alt="Bathroom shower remodel with sliding glass door and tile" loading="lazy" /><div class="gallery-overlay">View Photo</div></div></div>
+      <div class="gallery-item" data-index="71" data-category="decks"><div class="gallery-img-wrap"><img src="images/470296676_604267028843777_8306077024170358696_n.jpg" alt="Covered porch and patio addition" loading="lazy" /><div class="gallery-overlay">View Photo</div></div></div>
+      <div class="gallery-item" data-index="72" data-category="bathrooms"><div class="gallery-img-wrap"><img src="images/470305476_604266685510478_3357339723131912740_n.jpg" alt="Bathroom with freestanding soaking tub" loading="lazy" /><div class="gallery-overlay">View Photo</div></div></div>
+      <div class="gallery-item" data-index="73" data-category="decks"><div class="gallery-img-wrap"><img src="images/470320043_604267035510443_7095239707593958810_n.jpg" alt="Gray composite deck with steps and black metal railing" loading="lazy" /><div class="gallery-overlay">View Photo</div></div></div>
+      <div class="gallery-item" data-index="74" data-category="bathrooms"><div class="gallery-img-wrap"><img src="images/473724762_626919813245165_9148578232732617382_n.jpg" alt="Luxury master bathroom remodel with freestanding tub and frameless glass shower" loading="lazy" /><div class="gallery-overlay">View Photo</div></div></div>
+      <div class="gallery-item" data-index="75" data-category="bathrooms"><div class="gallery-img-wrap"><img src="images/473724762_626919813245165_9148578232732617382_n (1).jpg" alt="Luxury master bathroom with freestanding tub and glass shower" loading="lazy" /><div class="gallery-overlay">View Photo</div></div></div>
+      <div class="gallery-item" data-index="76" data-category="other"><div class="gallery-img-wrap"><img src="images/IMG_1923.jpg" alt="Home improvement project photo" loading="lazy" /><div class="gallery-overlay">View Photo</div></div></div>
+      <div class="gallery-item" data-index="77" data-category="other"><div class="gallery-img-wrap"><img src="images/IMG_1924.jpg" alt="Home improvement project photo" loading="lazy" /><div class="gallery-overlay">View Photo</div></div></div>
+      <div class="gallery-item" data-index="78" data-category="other"><div class="gallery-img-wrap"><img src="images/IMG_2031.jpg" alt="Home improvement project photo" loading="lazy" /><div class="gallery-overlay">View Photo</div></div></div>
+      <div class="gallery-item" data-index="79" data-category="other"><div class="gallery-img-wrap"><img src="images/IMG_2032.jpg" alt="Home improvement project photo" loading="lazy" /><div class="gallery-overlay">View Photo</div></div></div>
+      <div class="gallery-item" data-index="80" data-category="other"><div class="gallery-img-wrap"><img src="images/IMG_2033.jpg" alt="Home improvement project photo" loading="lazy" /><div class="gallery-overlay">View Photo</div></div></div>
+      <div class="gallery-item" data-index="81" data-category="other"><div class="gallery-img-wrap"><img src="images/IMG_2034.jpg" alt="Home improvement project photo" loading="lazy" /><div class="gallery-overlay">View Photo</div></div></div>
+      <div class="gallery-item" data-index="82" data-category="other"><div class="gallery-img-wrap"><img src="images/IMG_2148.jpg" alt="Home improvement project photo" loading="lazy" /><div class="gallery-overlay">View Photo</div></div></div>
+      <div class="gallery-item" data-index="83" data-category="other"><div class="gallery-img-wrap"><img src="images/IMG_2219.jpg" alt="Home improvement project photo" loading="lazy" /><div class="gallery-overlay">View Photo</div></div></div>
+      <div class="gallery-item" data-index="84" data-category="other"><div class="gallery-img-wrap"><img src="images/IMG_2221.jpg" alt="Home improvement project photo" loading="lazy" /><div class="gallery-overlay">View Photo</div></div></div>
+      <div class="gallery-item" data-index="85" data-category="other"><div class="gallery-img-wrap"><img src="images/IMG_2289.jpg" alt="Home improvement project photo" loading="lazy" /><div class="gallery-overlay">View Photo</div></div></div>
+      <div class="gallery-item" data-index="86" data-category="other"><div class="gallery-img-wrap"><img src="images/IMG_2303.jpg" alt="Home improvement project photo" loading="lazy" /><div class="gallery-overlay">View Photo</div></div></div>
+      <div class="gallery-item" data-index="87" data-category="other"><div class="gallery-img-wrap"><img src="images/IMG_2303 (1).jpg" alt="Home improvement project photo" loading="lazy" /><div class="gallery-overlay">View Photo</div></div></div>
+      <div class="gallery-item" data-index="88" data-category="other"><div class="gallery-img-wrap"><img src="images/IMG_2307.jpg" alt="Home improvement project photo" loading="lazy" /><div class="gallery-overlay">View Photo</div></div></div>
+      <div class="gallery-item" data-index="89" data-category="other"><div class="gallery-img-wrap"><img src="images/IMG_2308.jpg" alt="Home improvement project photo" loading="lazy" /><div class="gallery-overlay">View Photo</div></div></div>
+      <div class="gallery-item" data-index="90" data-category="other"><div class="gallery-img-wrap"><img src="images/IMG_2309.jpg" alt="Home improvement project photo" loading="lazy" /><div class="gallery-overlay">View Photo</div></div></div>
+      <div class="gallery-item" data-index="91" data-category="other"><div class="gallery-img-wrap"><img src="images/IMG_2330.jpg" alt="Home improvement project photo" loading="lazy" /><div class="gallery-overlay">View Photo</div></div></div>
+      <div class="gallery-item" data-index="92" data-category="other"><div class="gallery-img-wrap"><img src="images/IMG_2334.jpg" alt="Home improvement project photo" loading="lazy" /><div class="gallery-overlay">View Photo</div></div></div>
+      <div class="gallery-item" data-index="93" data-category="other"><div class="gallery-img-wrap"><img src="images/IMG_2335.jpg" alt="Home improvement project photo" loading="lazy" /><div class="gallery-overlay">View Photo</div></div></div>
+      <div class="gallery-item" data-index="94" data-category="other"><div class="gallery-img-wrap"><img src="images/IMG_2433.jpg" alt="Home improvement project photo" loading="lazy" /><div class="gallery-overlay">View Photo</div></div></div>
+      <div class="gallery-item" data-index="95" data-category="other"><div class="gallery-img-wrap"><img src="images/IMG_2435.jpg" alt="Home improvement project photo" loading="lazy" /><div class="gallery-overlay">View Photo</div></div></div>
+      <div class="gallery-item" data-index="96" data-category="other"><div class="gallery-img-wrap"><img src="images/IMG_2436.jpg" alt="Home improvement project photo" loading="lazy" /><div class="gallery-overlay">View Photo</div></div></div>
+      <div class="gallery-item" data-index="97" data-category="other"><div class="gallery-img-wrap"><img src="images/IMG_3651.jpg" alt="Home improvement project photo" loading="lazy" /><div class="gallery-overlay">View Photo</div></div></div>
+      <div class="gallery-item" data-index="98" data-category="other"><div class="gallery-img-wrap"><img src="images/IMG_4394.jpg" alt="Home improvement project photo" loading="lazy" /><div class="gallery-overlay">View Photo</div></div></div>
+      <div class="gallery-item" data-index="99" data-category="other"><div class="gallery-img-wrap"><img src="images/IMG_4394 (1).jpg" alt="Home improvement project photo" loading="lazy" /><div class="gallery-overlay">View Photo</div></div></div>
+      <div class="gallery-item" data-index="100" data-category="other"><div class="gallery-img-wrap"><img src="images/IMG_4395.jpg" alt="Home improvement project photo" loading="lazy" /><div class="gallery-overlay">View Photo</div></div></div>
+      <div class="gallery-item" data-index="101" data-category="other"><div class="gallery-img-wrap"><img src="images/IMG_4395 (1).jpg" alt="Home improvement project photo" loading="lazy" /><div class="gallery-overlay">View Photo</div></div></div>
+      <div class="gallery-item" data-index="102" data-category="other"><div class="gallery-img-wrap"><img src="images/IMG_4396.jpg" alt="Home improvement project photo" loading="lazy" /><div class="gallery-overlay">View Photo</div></div></div>
+      <div class="gallery-item" data-index="103" data-category="other"><div class="gallery-img-wrap"><img src="images/IMG_4396 (1).jpg" alt="Home improvement project photo" loading="lazy" /><div class="gallery-overlay">View Photo</div></div></div>
+      <div class="gallery-item" data-index="104" data-category="other"><div class="gallery-img-wrap"><img src="images/IMG_4397.jpg" alt="Home improvement project photo" loading="lazy" /><div class="gallery-overlay">View Photo</div></div></div>
+      <div class="gallery-item" data-index="105" data-category="other"><div class="gallery-img-wrap"><img src="images/IMG_4398.jpg" alt="Home improvement project photo" loading="lazy" /><div class="gallery-overlay">View Photo</div></div></div>
+      <div class="gallery-item" data-index="106" data-category="other"><div class="gallery-img-wrap"><img src="images/IMG_4399.jpg" alt="Home improvement project photo" loading="lazy" /><div class="gallery-overlay">View Photo</div></div></div>
+      <div class="gallery-item" data-index="107" data-category="other"><div class="gallery-img-wrap"><img src="images/IMG_4400.jpg" alt="Home improvement project photo" loading="lazy" /><div class="gallery-overlay">View Photo</div></div></div>
+      <div class="gallery-item" data-index="108" data-category="other"><div class="gallery-img-wrap"><img src="images/IMG_4401.jpg" alt="Home improvement project photo" loading="lazy" /><div class="gallery-overlay">View Photo</div></div></div>
+      <div class="gallery-item" data-index="109" data-category="other"><div class="gallery-img-wrap"><img src="images/IMG_4402.jpg" alt="Home improvement project photo" loading="lazy" /><div class="gallery-overlay">View Photo</div></div></div>
+      <div class="gallery-item" data-index="110" data-category="other"><div class="gallery-img-wrap"><img src="images/IMG_4403.jpg" alt="Home improvement project photo" loading="lazy" /><div class="gallery-overlay">View Photo</div></div></div>
+      <div class="gallery-item" data-index="111" data-category="other"><div class="gallery-img-wrap"><img src="images/IMG_4404.jpg" alt="Home improvement project photo" loading="lazy" /><div class="gallery-overlay">View Photo</div></div></div>
+      <div class="gallery-item" data-index="112" data-category="other"><div class="gallery-img-wrap"><img src="images/IMG_4408.jpg" alt="Home improvement project photo" loading="lazy" /><div class="gallery-overlay">View Photo</div></div></div>
+      <div class="gallery-item" data-index="113" data-category="other"><div class="gallery-img-wrap"><img src="images/IMG_4409.jpg" alt="Home improvement project photo" loading="lazy" /><div class="gallery-overlay">View Photo</div></div></div>
+      <div class="gallery-item" data-index="114" data-category="other"><div class="gallery-img-wrap"><img src="images/IMG_4410.jpg" alt="Home improvement project photo" loading="lazy" /><div class="gallery-overlay">View Photo</div></div></div>
+      <div class="gallery-item" data-index="115" data-category="other"><div class="gallery-img-wrap"><img src="images/IMG_4411.jpg" alt="Home improvement project photo" loading="lazy" /><div class="gallery-overlay">View Photo</div></div></div>
+      <div class="gallery-item" data-index="116" data-category="other"><div class="gallery-img-wrap"><img src="images/IMG_4412.jpg" alt="Home improvement project photo" loading="lazy" /><div class="gallery-overlay">View Photo</div></div></div>
+      <div class="gallery-item" data-index="117" data-category="other"><div class="gallery-img-wrap"><img src="images/IMG_4413.jpg" alt="Home improvement project photo" loading="lazy" /><div class="gallery-overlay">View Photo</div></div></div>
+      <div class="gallery-item" data-index="118" data-category="other"><div class="gallery-img-wrap"><img src="images/IMG_4414.jpg" alt="Home improvement project photo" loading="lazy" /><div class="gallery-overlay">View Photo</div></div></div>
+      <div class="gallery-item" data-index="119" data-category="other"><div class="gallery-img-wrap"><img src="images/IMG_4415.jpg" alt="Home improvement project photo" loading="lazy" /><div class="gallery-overlay">View Photo</div></div></div>
+      <div class="gallery-item" data-index="120" data-category="other"><div class="gallery-img-wrap"><img src="images/IMG_4416.jpg" alt="Home improvement project photo" loading="lazy" /><div class="gallery-overlay">View Photo</div></div></div>
+      <div class="gallery-item" data-index="121" data-category="other"><div class="gallery-img-wrap"><img src="images/IMG_4417.jpg" alt="Home improvement project photo" loading="lazy" /><div class="gallery-overlay">View Photo</div></div></div>
+    </div>
+  </section>
+
+  <!-- CTA BAND -->
+  <div class="cta-band">
+    <h2>Like What You See?</h2>
+    <p>Let's talk about what we can do for your home.</p>
+    <a href="tel:+14438295946" class="phone-link">(443) 829-5946</a>
+    <a href="estimate.html" class="btn btn-primary">Get a Free Estimate</a>
+  </div>
+
+  <!-- Sticky Mobile Call Button -->
+  <a href="tel:+14438295946" class="sticky-call-btn" title="Call us now" aria-label="Call Walter's Home Improvement">
+    ☎️
+  </a>
+
+  <footer>
+    <p>&copy; 2025 <strong>Walter's Home Improvement</strong> &mdash; All rights reserved.</p>
+    <p style="margin-top:0.4rem;">Licensed &amp; Insured &bull; Serving Maryland for Over 46 Years</p>
+  </footer>
+
+  <script src="nav.js"></script>
+  <script>
+    // Gallery filtering
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const galleryItems = document.querySelectorAll('.gallery-item');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const filter = btn.getAttribute('data-filter');
+        
+        // Update active button
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        
+        // Filter gallery items
+        galleryItems.forEach(item => {
+          if (filter === 'all') {
+            item.classList.remove('hidden');
+          } else {
+            const category = item.getAttribute('data-category');
+            if (category === filter) {
+              item.classList.remove('hidden');
+            } else {
+              item.classList.add('hidden');
+            }
+          }
+        });
+      });
+    });
+
+    // Lightbox functionality
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const lightboxCounter = document.getElementById('lightboxCounter');
+    const items = Array.from(document.querySelectorAll('.gallery-item:not(.hidden)'));
+    let current = 0;
+
+    function openLightbox(index) {
+      current = index;
+      const visibleItems = Array.from(document.querySelectorAll('.gallery-item:not(.hidden)'));
+      const clickedItem = visibleItems[index];
+      lightboxImg.src = clickedItem.querySelector('img').src;
+      lightboxImg.alt = clickedItem.querySelector('img').alt;
+      lightboxCounter.textContent = (index + 1) + ' / ' + visibleItems.length;
+      lightbox.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      lightbox.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    function showPrev() {
+      const visibleItems = Array.from(document.querySelectorAll('.gallery-item:not(.hidden)'));
+      current = (current - 1 + visibleItems.length) % visibleItems.length;
+      lightboxImg.src = visibleItems[current].querySelector('img').src;
+      lightboxImg.alt = visibleItems[current].querySelector('img').alt;
+      lightboxCounter.textContent = (current + 1) + ' / ' + visibleItems.length;
+    }
+
+    function showNext() {
+      const visibleItems = Array.from(document.querySelectorAll('.gallery-item:not(.hidden)'));
+      current = (current + 1) % visibleItems.length;
+      lightboxImg.src = visibleItems[current].querySelector('img').src;
+      lightboxImg.alt = visibleItems[current].querySelector('img').alt;
+      lightboxCounter.textContent = (current + 1) + ' / ' + visibleItems.length;
+    }
+
+    // Attach click handlers to gallery items
+    function attachGalleryHandlers() {
+      const visibleItems = Array.from(document.querySelectorAll('.gallery-item:not(.hidden)'));
+      visibleItems.forEach((item, i) => {
+        item.removeEventListener('click', handleGalleryClick);
+        item.addEventListener('click', () => openLightbox(i));
+      });
+    }
+
+    function handleGalleryClick(e) {
+      const index = Array.from(document.querySelectorAll('.gallery-item:not(.hidden)')).indexOf(this);
+      openLightbox(index);
+    }
+
+    galleryItems.forEach(item => {
+      item.addEventListener('click', function() {
+        const visibleItems = Array.from(document.querySelectorAll('.gallery-item:not(.hidden)'));
+        const index = visibleItems.indexOf(this);
+        openLightbox(index);
+      });
+    });
+
+    document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
+    document.getElementById('lightboxPrev').addEventListener('click', showPrev);
+    document.getElementById('lightboxNext').addEventListener('click', showNext);
+
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) closeLightbox();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (!lightbox.classList.contains('open')) return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowLeft') showPrev();
+      if (e.key === 'ArrowRight') showNext();
+    });
+  </script>
+
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" id="lightboxClose">&times;</button>
+    <button class="lightbox-prev" id="lightboxPrev">&#8249;</button>
+    <img id="lightboxImg" src="" alt="" />
+    <button class="lightbox-next" id="lightboxNext">&#8250;</button>
+    <div class="lightbox-counter" id="lightboxCounter"></div>
+  </div>
+
+</body>
+</html>

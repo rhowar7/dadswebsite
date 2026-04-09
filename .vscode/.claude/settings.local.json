@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(convert NewLogo.jpg -auto-level -enhance -sharpen 0x1 -modulate 110,120 -quality 95 NewLogo.jpg)",
+      "Bash(python3)"
+    ]
+  }
+}
