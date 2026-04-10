@@ -167,10 +167,18 @@
   </footer>
 
   <script src="nav.js"></script>
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/index.min.js"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   <script>
-    // Initialize EmailJS with your public key
-    emailjs.init('9_j-uvK3QR4l9VL-C');
+    // Check if EmailJS loaded
+    if (typeof emailjs === 'undefined') {
+      console.error('❌ EmailJS library failed to load');
+    } else {
+      console.log('✅ EmailJS library loaded successfully');
+      // Initialize EmailJS with your public key
+      emailjs.init({
+        publicKey: '9_j-uvK3QR4l9VL-C',
+      });
+    }
 
     const form = document.getElementById('estimateForm');
     const successMsg = document.getElementById('successMsg');
@@ -188,7 +196,7 @@
 
     form.addEventListener('submit', (e) => {
       e.preventDefault();
-      console.log('Form submitted');
+      console.log('Form submitted - starting validation');
 
       // Simple validation
       const required = form.querySelectorAll('[required]');
@@ -203,15 +211,17 @@
       });
 
       if (!valid) {
+        console.log('Validation failed - missing required fields');
         const first = form.querySelector('[required][style*="e53e3e"]');
         if (first) first.focus();
         return;
       }
 
+      console.log('Validation passed - preparing to send email');
+
       // Show loading state
       submitBtn.disabled = true;
       submitBtn.textContent = 'Sending...';
-      console.log('Validation passed, sending email...');
 
       // Prepare email parameters
       const templateParams = {
@@ -225,12 +235,11 @@
         timeline: document.getElementById('timeline').value || 'Not specified'
       };
 
-      console.log('Template params:', templateParams);
-      console.log('Service ID: service_5mxrcrc');
-      console.log('Template ID: template_puxk7oa');
+      console.log('Template params prepared:', templateParams);
+      console.log('About to call EmailJS with service: service_ut61pkj, template: template_puxk7oa (new API)');
 
-      // Send email via EmailJS
-      emailjs.send('service_5mxrcrc', 'template_puxk7oa', templateParams)
+      // Send email via EmailJS (new API)
+      emailjs.send('service_ut61pkj', 'template_puxk7oa', templateParams)
         .then((response) => {
           console.log('✅ Email sent successfully!', response);
           console.log('Response status:', response.status);

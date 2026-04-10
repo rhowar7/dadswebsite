@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Email Test</title>
+</head>
+<body>
+    <h1>Simple Email Test (No External Dependencies)</h1>
+    <p>This test uses a simple form that creates a mailto: link instead of EmailJS.</p>
+
+    <form id="simpleForm">
+        <div style="margin-bottom: 10px;">
+            <label>Name: <input type="text" id="name" required></label>
+        </div>
+        <div style="margin-bottom: 10px;">
+            <label>Email: <input type="email" id="email" required></label>
+        </div>
+        <div style="margin-bottom: 10px;">
+            <label>Message: <textarea id="message" required></textarea></label>
+        </div>
+        <button type="submit">Send Test Email</button>
+    </form>
+
+    <script>
+        document.getElementById('simpleForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+
+            // Create mailto link
+            const subject = encodeURIComponent('Test Estimate Request');
+            const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`);
+            const mailtoLink = `mailto:whoward45@gmail.com?subject=${subject}&body=${body}`;
+
+            // Open email client
+            window.location.href = mailtoLink;
+
+            alert('Email client should open with the estimate request. If it doesn\'t, copy this link manually: ' + mailtoLink);
+        });
+    </script>
+</body>
+</html></content>
+<parameter name="filePath">c:\Users\ryanh\dadswebsite\simple_email_test.html
