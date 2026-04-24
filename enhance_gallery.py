@@ -67,7 +67,7 @@ def enhance_image(input_path, output_path=None, operations=None):
             return True
 
     except Exception as e:
-        print(f"✗ Failed to enhance {input_path.name}: {e}")
+        print(f"FAILED to enhance {input_path.name}: {e}")
         return False
 
 def batch_enhance_gallery():
@@ -76,7 +76,7 @@ def batch_enhance_gallery():
     images_dir = script_dir / 'images'
 
     if not images_dir.exists():
-        print("❌ Images directory not found. Please run this script from the website root directory.")
+        print("ERROR: Images directory not found. Please run this script from the website root directory.")
         return
 
     # All gallery images from the HTML
@@ -169,14 +169,14 @@ def batch_enhance_gallery():
         'quality': 85
     }
 
-    print("🚀 Starting batch enhancement of gallery images...")
-    print(f"📁 Processing {len(gallery_images)} gallery images")
-    print("⚙️  Enhancement settings:")
-    print("   • Sharpening: Enabled")
-    print("   • Brightness: +5%")
-    print("   • Contrast: +8%")
-    print("   • Max size: 1200px")
-    print("   • Format: WebP (85% quality)")
+    print("Starting batch enhancement of gallery images...")
+    print(f"Processing {len(gallery_images)} gallery images")
+    print("Enhancement settings:")
+    print("   - Sharpening: Enabled")
+    print("   - Brightness: +5%")
+    print("   - Contrast: +8%")
+    print("   - Max size: 1200px")
+    print("   - Format: WebP (85% quality)")
     print()
 
     enhanced_count = 0
@@ -201,18 +201,18 @@ def batch_enhance_gallery():
             else:
                 failed_count += 1
         else:
-            print(f"⚠️  Missing: {img_name}")
+            print(f"Missing: {img_name}")
             failed_count += 1
 
     print()
-    print("✅ Batch enhancement complete!")
-    print(f"📊 Results: {enhanced_count} enhanced, {failed_count} failed")
+    print("Batch enhancement complete!")
+    print(f"Results: {enhanced_count} enhanced, {failed_count} failed")
 
     if total_enhanced_size > 0 and total_original_size > 0:
         savings_percent = (1 - total_enhanced_size / total_original_size) * 100
-        print(".1f"
-    print("💡 The HTML has been updated to use WebP images with JPEG fallbacks")
-    print("🔄 Browsers will automatically use the best format available")
+        print(f"File size reduction: {savings_percent:.1f}%")
+    print("The HTML has been updated to use WebP images with JPEG fallbacks")
+    print("Browsers will automatically use the best format available")
 
 def main():
     """Main function"""
@@ -222,14 +222,14 @@ def main():
     # Check if PIL/Pillow is available
     try:
         import PIL
-        print(f"✓ PIL/Pillow version: {PIL.__version__}")
+        print(f"OK: PIL/Pillow version: {PIL.__version__}")
     except ImportError:
-        print("❌ PIL/Pillow not found. Install with: pip install pillow")
+        print("ERROR: PIL/Pillow not found. Install with: pip install pillow")
         sys.exit(1)
 
     # Check if we're in the right directory
     if not Path('images').exists():
-        print("❌ 'images' directory not found. Please run from website root.")
+        print("ERROR: 'images' directory not found. Please run from website root.")
         sys.exit(1)
 
     batch_enhance_gallery()
