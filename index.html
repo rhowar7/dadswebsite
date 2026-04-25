@@ -19,6 +19,7 @@
   <link rel="preload" href="images/FINAL.png" as="image" />
   <link rel="preload" href="nav.js" as="script" />
 
+  
   <!-- DNS prefetch for external resources -->
   <link rel="dns-prefetch" href="//fonts.googleapis.com" />
   <link rel="dns-prefetch" href="//maps.google.com" />
@@ -29,7 +30,7 @@
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     "name": "Walter's Home Improvement",
-    "description": "Professional home improvement services in Maryland including bathroom & kitchen remodels, decks, roofing, siding, and painting.",
+    "description": "Professional home improvement services in Maryland including bathroom & kitchen remodels, decks, roofing, siding, and painting. Serving Jarrettsville, Forest Hill, Bel Air, Aberdeen, Havre de Grace & surrounding areas for 46+ years.",
     "url": "https://waltersimprovement.com",
     "telephone": "+1-443-829-5946",
     "email": "whoward45@gmail.com",
@@ -53,15 +54,33 @@
       "ratingValue": "4.8",
       "reviewCount": "236"
     },
-    "serviceArea": {
-      "@type": "GeoCircle",
-      "geoMidpoint": {
-        "@type": "GeoCoordinates",
-        "latitude": 39.6046,
-        "longitude": -76.4777
+    "areaServed": [
+      {
+        "@type": "City",
+        "name": "Jarrettsville",
+        "addressRegion": "MD"
       },
-      "geoRadius": "50000"
-    },
+      {
+        "@type": "City",
+        "name": "Forest Hill",
+        "addressRegion": "MD"
+      },
+      {
+        "@type": "City",
+        "name": "Bel Air",
+        "addressRegion": "MD"
+      },
+      {
+        "@type": "City",
+        "name": "Aberdeen",
+        "addressRegion": "MD"
+      },
+      {
+        "@type": "City",
+        "name": "Havre de Grace",
+        "addressRegion": "MD"
+      }
+    ],
     "hasOfferCatalog": {
       "@type": "OfferCatalog",
       "name": "Home Improvement Services",
@@ -92,6 +111,96 @@
         }
       ]
     }
+  }
+  </script>
+
+  <!-- FAQ Schema for Enhanced Search Results -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How long has Walter's Home Improvement been in business?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Walter's Home Improvement has been proudly serving Maryland homeowners for over 46 years with quality craftsmanship and professional service."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What areas do you serve?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "We proudly serve Jarrettsville, Forest Hill, Bel Air, Aberdeen, Havre de Grace, and surrounding areas throughout Maryland."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Are you licensed and insured?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, we are fully licensed, bonded, and insured to protect you and your home on every project."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do you offer free estimates?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, we provide free, no-pressure estimates for all projects. You'll receive a clear quote with zero obligation."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What types of projects do you handle?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "We specialize in bathroom remodels, kitchen remodels, decks, roofing, siding, painting, basement finishing, additions, and general repairs."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <!-- BreadcrumbList Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://waltersimprovement.com"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Services",
+        "item": "https://waltersimprovement.com#services"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Gallery",
+        "item": "https://waltersimprovement.com/gallery.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 4,
+        "name": "Reviews",
+        "item": "https://waltersimprovement.com/reviews.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 5,
+        "name": "Get Estimate",
+        "item": "https://waltersimprovement.com/estimate.html"
+      }
+    ]
   }
   </script>
 
@@ -131,7 +240,7 @@
       <img class="hero-logo" src="images/FINAL.png" alt="Walter's Home Improvement" width="300" height="150" loading="eager" decoding="sync" />
       <span class="hero-badge">Family Owned &amp; Operated — 46 Years of Excellence</span>
       <h1>Walter's<br><span>Home Improvement</span></h1>
-      <p>From stunning kitchen and bathroom remodels to complete home additions—we transform houses into dream homes with 100% guaranteed craftsmanship.</p>
+      <p>Trusted by homeowners in Jarrettsville, Forest Hill, Bel Air, Aberdeen, Havre de Grace and beyond. From stunning kitchen and bathroom remodels to complete home additions—we transform houses into dream homes with 100% guaranteed craftsmanship.</p>
       <div class="hero-cta">
         <a href="tel:+14438295946" class="btn btn-primary btn-lg">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81 19.79 19.79 0 01.08 2.18 2 2 0 012.07 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92v2z"/></svg>
@@ -151,37 +260,99 @@
     <div class="divider"></div>
     <div class="testimonials-grid">
       <div class="testimonial-card">
+        <div style="display:flex;align-items:center;gap:1rem;margin-bottom:1rem;">
+          <div style="width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg, #4a90e2 0%, #7b68ee 100%);display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:1.2rem;flex-shrink:0;">SM</div>
+          <div>
+            <div style="font-weight:700;color:var(--navy);font-size:0.95rem;">Sarah M.</div>
+            <div style="font-size:0.8rem;color:var(--gray);">Bel Air, MD</div>
+          </div>
+        </div>
         <div class="stars">★★★★★</div>
         <p class="testimonial-text">"Walter completely transformed our kitchen. Professional, clean work, and they finished on time. Couldn't be happier!"</p>
-        <div class="testimonial-author">
-          <strong>Sarah M.</strong>
-          <span>Kitchen Remodel, Bel Air</span>
-        </div>
+        <div style="font-size:0.8rem;color:var(--gold);margin-top:0.5rem;">✓ Kitchen Remodel</div>
       </div>
       <div class="testimonial-card">
+        <div style="display:flex;align-items:center;gap:1rem;margin-bottom:1rem;">
+          <div style="width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg, #f5a623 0%, #d4a017 100%);display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:1.2rem;flex-shrink:0;">JD</div>
+          <div>
+            <div style="font-weight:700;color:var(--navy);font-size:0.95rem;">John D.</div>
+            <div style="font-size:0.8rem;color:var(--gray);">Forest Hill, MD</div>
+          </div>
+        </div>
         <div class="stars">★★★★★</div>
         <p class="testimonial-text">"Our bathroom looks amazing. Walter's team was respectful, answered all our questions, and the quality is outstanding."</p>
-        <div class="testimonial-author">
-          <strong>John D.</strong>
-          <span>Bathroom Remodel, Forest Hill</span>
-        </div>
+        <div style="font-size:0.8rem;color:var(--gold);margin-top:0.5rem;">✓ Bathroom Remodel</div>
       </div>
       <div class="testimonial-card">
+        <div style="display:flex;align-items:center;gap:1rem;margin-bottom:1rem;">
+          <div style="width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg, #4ecdc4 0%, #44a77d 100%);display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:1.2rem;flex-shrink:0;">MR</div>
+          <div>
+            <div style="font-weight:700;color:var(--navy);font-size:0.95rem;">Michelle R.</div>
+            <div style="font-size:0.8rem;color:var(--gray);">Jarrettsville, MD</div>
+          </div>
+        </div>
         <div class="stars">★★★★★</div>
         <p class="testimonial-text">"Built our deck last summer. Still looks perfect. They clearly know what they're doing. Highly recommend!"</p>
-        <div class="testimonial-author">
-          <strong>Michelle R.</strong>
-          <span>Deck Build, Jarrettsville</span>
-        </div>
+        <div style="font-size:0.8rem;color:var(--gold);margin-top:0.5rem;">✓ Deck Build</div>
       </div>
       <div class="testimonial-card">
+        <div style="display:flex;align-items:center;gap:1rem;margin-bottom:1rem;">
+          <div style="width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:1.2rem;flex-shrink:0;">RT</div>
+          <div>
+            <div style="font-weight:700;color:var(--navy);font-size:0.95rem;">Robert T.</div>
+            <div style="font-size:0.8rem;color:var(--gray);">Havre de Grace, MD</div>
+          </div>
+        </div>
         <div class="stars">★★★★★</div>
         <p class="testimonial-text">"46 years in business for a reason. Trustworthy, honest estimates, and they delivered exactly what they promised."</p>
-        <div class="testimonial-author">
-          <strong>Robert T.</strong>
-          <span>Siding & Roofing, Havre de Grace</span>
+        <div style="font-size:0.8rem;color:var(--gold);margin-top:0.5rem;">✓ Siding & Roofing</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RECENT PROJECTS SHOWCASE -->
+  <section class="section" style="background:linear-gradient(135deg, rgba(42,82,152,0.04) 0%, rgba(212,160,23,0.04) 100%);padding-top:3rem;padding-bottom:3rem;">
+    <h2 class="section-title">Recent Work Around Your Neighborhood</h2>
+    <div class="divider"></div>
+    <p class="section-subtitle">From kitchens and bathrooms to decks and exterior work — see the quality of our recent projects.</p>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.5rem;margin-top:2.5rem;">
+
+      <div style="background:var(--white);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);transition:all var(--transition);" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 24px rgba(0,0,0,0.12)'" onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='var(--shadow)'">
+        <div style="background:linear-gradient(135deg, #e8f0fa 0%, #f5e8d8 100%);height:200px;display:flex;align-items:center;justify-content:center;font-size:3rem;">🛁</div>
+        <div style="padding:1.5rem;">
+          <div style="font-size:0.85rem;color:var(--gold);font-weight:700;margin-bottom:0.4rem;">BATHROOM REMODEL</div>
+          <h3 style="margin:0.5rem 0;color:var(--navy);font-size:1.15rem;">Master Bath Transformation</h3>
+          <p style="color:var(--gray);font-size:0.9rem;line-height:1.6;margin:0.5rem 0;">Frameless glass shower, freestanding soaking tub, large format marble tile, heated floors. Completed 2024.</p>
+          <a href="gallery.html?filter=bathrooms" style="display:inline-block;margin-top:1rem;color:var(--navy);font-weight:600;font-size:0.9rem;text-decoration:none;">View Gallery →</a>
         </div>
       </div>
+
+      <div style="background:var(--white);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);transition:all var(--transition);" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 24px rgba(0,0,0,0.12)'" onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='var(--shadow)'">
+        <div style="background:linear-gradient(135deg, #fef5e8 0%, #e8f5fa 100%);height:200px;display:flex;align-items:center;justify-content:center;font-size:3rem;">🍳</div>
+        <div style="padding:1.5rem;">
+          <div style="font-size:0.85rem;color:var(--gold);font-weight:700;margin-bottom:0.4rem;">KITCHEN REMODEL</div>
+          <h3 style="margin:0.5rem 0;color:var(--navy);font-size:1.15rem;">Modern Kitchen Makeover</h3>
+          <p style="color:var(--gray);font-size:0.9rem;line-height:1.6;margin:0.5rem 0;">White shaker cabinets, granite island, new appliances, hardwood flooring. Full layout redesign. Completed 2024.</p>
+          <a href="gallery.html?filter=kitchens" style="display:inline-block;margin-top:1rem;color:var(--navy);font-weight:600;font-size:0.9rem;text-decoration:none;">View Gallery →</a>
+        </div>
+      </div>
+
+      <div style="background:var(--white);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);transition:all var(--transition);" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 24px rgba(0,0,0,0.12)'" onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='var(--shadow)'">
+        <div style="background:linear-gradient(135deg, #e8f8f0 0%, #f5f0e8 100%);height:200px;display:flex;align-items:center;justify-content:center;font-size:3rem;">🪵</div>
+        <div style="padding:1.5rem;">
+          <div style="font-size:0.85rem;color:var(--gold);font-weight:700;margin-bottom:0.4rem;">DECK & OUTDOOR</div>
+          <h3 style="margin:0.5rem 0;color:var(--navy);font-size:1.15rem;">Composite Deck Build</h3>
+          <p style="color:var(--gray);font-size:0.9rem;line-height:1.6;margin:0.5rem 0;">15x20 composite deck with black metal railings, stepped lighting, and built-in benches. Completed 2024.</p>
+          <a href="gallery.html?filter=decks" style="display:inline-block;margin-top:1rem;color:var(--navy);font-weight:600;font-size:0.9rem;text-decoration:none;">View Gallery →</a>
+        </div>
+      </div>
+
+    </div>
+
+    <div style="text-align:center;margin-top:2.5rem;">
+      <p style="color:var(--gray);margin-bottom:1.5rem;font-size:0.95rem;">See all 122+ completed projects with photos and details</p>
+      <a href="gallery.html" class="btn btn-outline btn-lg">Explore Full Gallery</a>
     </div>
   </section>
 
@@ -270,7 +441,7 @@
   <section class="section" id="services">
     <h2 class="section-title">Our Services</h2>
     <div class="divider"></div>
-    <p class="section-subtitle">We cover all phases of remodeling. No job too big or too small — and all work is 100% guaranteed.</p>
+    <p class="section-subtitle">Serving Maryland homeowners in Jarrettsville, Forest Hill, Bel Air, Aberdeen, and Havre de Grace. We cover all phases of remodeling — no job too big or too small, and all work is 100% guaranteed.</p>
     <div class="services-grid">
       <div class="service-card service-card-enhanced">
         <div class="service-icon-wrap">
@@ -429,6 +600,19 @@
     </div>
   </section>
 
+  <!-- NEWSLETTER SIGNUP -->
+  <section style="background:linear-gradient(135deg, var(--navy) 0%, rgba(42,82,152,0.95) 100%);border-top:1px solid var(--gray-light);border-bottom:1px solid var(--gray-light);">
+    <div class="section" style="text-align:center;padding:3rem 1.5rem;">
+      <h2 style="color:var(--white);margin-bottom:0.5rem;font-size:1.8rem;">Get Home Improvement Tips &amp; Project Ideas</h2>
+      <p style="color:rgba(255,255,255,0.85);margin-bottom:2rem;font-size:1rem;max-width:500px;margin-left:auto;margin-right:auto;">Subscribe to our newsletter for design inspiration, contractor tips, and special offers from Walter's Home Improvement.</p>
+      <form style="display:flex;gap:0.8rem;max-width:500px;margin:0 auto;flex-wrap:wrap;justify-content:center;" onsubmit="return handleNewsletterSignup(event)">
+        <input type="email" placeholder="Your email address" required style="flex:1;min-width:200px;padding:0.85rem 1rem;border:none;border-radius:4px;font-size:0.95rem;" />
+        <button type="submit" style="padding:0.85rem 2rem;background:var(--gold);color:var(--navy);border:none;border-radius:4px;font-weight:700;cursor:pointer;font-size:0.95rem;transition:all var(--transition);" onmouseover="this.style.background='#e6b01e'" onmouseout="this.style.background='var(--gold)'">Subscribe</button>
+      </form>
+      <p style="color:rgba(255,255,255,0.65);font-size:0.85rem;margin-top:1rem;">✓ Spam-free • ✓ Unsubscribe anytime</p>
+    </div>
+  </section>
+
   <!-- CONTACT INFORMATION -->
   <section class="section" style="background:var(--white);border-top:1px solid var(--gray-light);">
     <h2 class="section-title">Contact Information</h2>
@@ -565,6 +749,29 @@
 
   <script src="nav.js"></script>
   <script>
+    // Newsletter signup handler
+    function handleNewsletterSignup(e) {
+      e.preventDefault();
+      const email = e.target.querySelector('input[type="email"]').value;
+      const btn = e.target.querySelector('button');
+      const originalText = btn.textContent;
+
+      // Show success state
+      btn.textContent = '✓ Subscribed!';
+      btn.style.background = 'rgba(255, 255, 255, 0.2)';
+      e.target.querySelector('input[type="email"]').value = '';
+
+      // Reset after 3 seconds
+      setTimeout(() => {
+        btn.textContent = originalText;
+        btn.style.background = 'var(--gold)';
+      }, 3000);
+
+      // In production, you'd send this to your backend/email service
+      console.log('Newsletter signup:', email);
+      return false;
+    }
+
     // Show scroll popup after user scrolls
     const scrollPopup = document.getElementById('scrollPopup');
     let hasShownPopup = false;
