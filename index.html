@@ -221,6 +221,7 @@
       <ul class="nav-links" id="navLinks">
         <li><a href="#hero" class="active">Home</a></li>
         <li><a href="#services">Services</a></li>
+        <li><a href="service-areas.html">Service Areas</a></li>
         <li><a href="reviews.html">Reviews</a></li>
         <li><a href="gallery.html">Gallery</a></li>
         <li><a href="faq.html">FAQ</a></li>
@@ -259,6 +260,30 @@
   <div style="background:linear-gradient(90deg, var(--gold) 0%, rgba(212,160,23,0.8) 100%);padding:1.25rem 1.5rem;text-align:center;color:var(--navy);font-weight:600;">
     💳 All Forms of Payment Accepted — Cash, Check, Credit Card, Debit Card
   </div>
+
+  <!-- TRUST BADGES & CERTIFICATIONS -->
+  <section style="background:var(--off-white);border-top:1px solid var(--gray-light);border-bottom:1px solid var(--gray-light);">
+    <div class="section" style="padding:2rem 1.5rem;">
+      <h3 style="text-align:center;color:var(--navy);margin-bottom:1.5rem;font-size:1.3rem;">Licensed, Insured &amp; Certified</h3>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.5rem;max-width:900px;margin:0 auto;">
+        <div style="text-align:center;padding:1.5rem;background:var(--white);border-radius:var(--radius);border:1px solid var(--gray-light);">
+          <div style="font-size:2rem;margin-bottom:0.5rem;">📋</div>
+          <h4 style="color:var(--navy);margin-bottom:0.3rem;">Maryland License</h4>
+          <p style="color:var(--gray);font-size:0.9rem;margin:0;">Licensed home improvement contractor in the State of Maryland</p>
+        </div>
+        <div style="text-align:center;padding:1.5rem;background:var(--white);border-radius:var(--radius);border:1px solid var(--gray-light);">
+          <div style="font-size:2rem;margin-bottom:0.5rem;">🛡️</div>
+          <h4 style="color:var(--navy);margin-bottom:0.3rem;">Fully Insured</h4>
+          <p style="color:var(--gray);font-size:0.9rem;margin:0;">General liability &amp; workers' compensation insurance on all projects</p>
+        </div>
+        <div style="text-align:center;padding:1.5rem;background:var(--white);border-radius:var(--radius);border:1px solid var(--gray-light);">
+          <div style="font-size:2rem;margin-bottom:0.5rem;">✅</div>
+          <h4 style="color:var(--navy);margin-bottom:0.3rem;">Bonded</h4>
+          <p style="color:var(--gray);font-size:0.9rem;margin:0;">Bonded contractor protecting your investment &amp; project</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- TESTIMONIALS (Above the fold) -->
   <section class="section testimonials-section" style="padding-top:2.5rem;padding-bottom:2.5rem;background:var(--off-white);">
@@ -312,6 +337,18 @@
         <div class="stars">★★★★★</div>
         <p class="testimonial-text">"46 years in business for a reason. Trustworthy, honest estimates, and they delivered exactly what they promised."</p>
         <div style="font-size:0.8rem;color:var(--gold);margin-top:0.5rem;">✓ Siding & Roofing</div>
+      </div>
+      <div class="testimonial-card">
+        <div style="display:flex;align-items:center;gap:1rem;margin-bottom:1rem;">
+          <div style="width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg, #27ae60 0%, #1e8449 100%);display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:1.2rem;flex-shrink:0;">KB</div>
+          <div>
+            <div style="font-weight:700;color:var(--navy);font-size:0.95rem;">Karen B.</div>
+            <div style="font-size:0.8rem;color:var(--gray);">Aberdeen, MD</div>
+          </div>
+        </div>
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">"Extremely professional crew, they showed up on time every day, and the finished basement looks incredible. Highly recommend!"</p>
+        <div style="font-size:0.8rem;color:var(--gold);margin-top:0.5rem;">✓ Basement Finishing</div>
       </div>
     </div>
   </section>
@@ -761,6 +798,13 @@
     <a href="estimate.html" class="btn btn-primary" style="margin-top: 1rem;">Request Free Estimate Online</a>
   </div>
 
+  <!-- Sticky Header with Phone Number -->
+  <div id="stickyHeader" style="position:fixed;top:0;left:0;right:0;background:var(--navy);color:var(--white);padding:0.75rem 1.5rem;text-align:center;font-weight:700;font-size:1.1rem;z-index:999;display:none;box-shadow:0 2px 8px rgba(0,0,0,0.15);transition:all 0.3s ease;">
+    <a href="tel:+14438295946" style="color:var(--gold);text-decoration:none;display:flex;align-items:center;justify-content:center;gap:0.5rem;">
+      📞 Call Now: (443) 829-5946
+    </a>
+  </div>
+
   <!-- Sticky Mobile Call Button -->
   <a href="tel:+14438295946" class="sticky-call-btn" title="Call us now" aria-label="Call Walter's Home Improvement">
     ☎️
@@ -815,6 +859,17 @@
 
   <script src="nav.js"></script>
   <script>
+    // Sticky header visibility on scroll
+    const stickyHeader = document.getElementById('stickyHeader');
+    window.addEventListener('scroll', () => {
+      const scrolled = window.scrollY;
+      if (scrolled > 300) {
+        stickyHeader.style.display = 'block';
+      } else {
+        stickyHeader.style.display = 'none';
+      }
+    });
+
     // Newsletter signup handler
     function handleNewsletterSignup(e) {
       e.preventDefault();
