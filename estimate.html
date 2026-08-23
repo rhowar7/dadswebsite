@@ -77,6 +77,9 @@
 
         <!-- Online Form -->
         <div id="formMethod">
+          <!-- Shown in place if sending fails, so the customer keeps what they typed -->
+          <div id="formError" role="alert" style="display:none;background:#fff5f5;border:1.5px solid #e53e3e;border-radius:var(--radius);padding:1.1rem;margin-bottom:1.5rem;color:var(--navy);"></div>
+
           <form id="estimateForm" novalidate>
 
             <div class="form-row">
@@ -110,6 +113,23 @@
                 <option value="repairs">General Repairs</option>
                 <option value="other">Other / Not Sure</option>
               </select>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="address">Property Town or ZIP</label>
+                <input type="text" id="address" name="address" placeholder="Jarrettsville, or 21084" autocomplete="postal-code" />
+              </div>
+              <div class="form-group">
+                <label for="timeline">Preferred Timeline</label>
+                <select id="timeline" name="timeline">
+                  <option value="" disabled selected>When would you like to start?</option>
+                  <option value="asap">As soon as possible</option>
+                  <option value="1month">Within 1 month</option>
+                  <option value="3months">Within 3 months</option>
+                  <option value="flexible">Flexible / just planning</option>
+                </select>
+              </div>
             </div>
 
             <div class="form-group">
@@ -162,15 +182,10 @@
   <script src="nav.js"></script>
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   <script>
-    // Check if EmailJS loaded
-    if (typeof emailjs === 'undefined') {
-      console.error('❌ EmailJS library failed to load');
-    } else {
-      console.log('✅ EmailJS library loaded successfully');
-      // Initialize EmailJS with your public key
-      emailjs.init({
-        publicKey: '9_j-uvK3QR4l9VL-C',
-      });
+    // The CDN can be blocked or offline. Initialise only if it loaded; the
+    // submit handler checks again and falls back to a call-us message.
+    if (typeof emailjs !== 'undefined') {
+      emailjs.init({ publicKey: '9_j-uvK3QR4l9VL-C' });
     }
 
     // Contact Method Switcher
@@ -201,40 +216,75 @@
     const successMsg = document.getElementById('successMsg');
     const submitBtn = document.getElementById('submitBtn');
 
-    // Basic phone formatting
+    const formError = document.getElementById('formError');
+
+    // Phone formatting. Strip to digits, drop a leading US country code, and
+    // cap at 10 so a number typed as 1-443-829-5946 isn't silently mangled
+    // into (144) 382-9594 and lost.
     const phoneInput = document.getElementById('phone');
     phoneInput.addEventListener('input', (e) => {
-      let val = e.target.value.replace(/\D/g, '');
-      if (val.length >= 10) {
-        val = `(${val.slice(0,3)}) ${val.slice(3,6)}-${val.slice(6,10)}`;
+      let digits = e.target.value.replace(/\D/g, '');
+      if (digits.length === 11 && digits[0] === '1') digits = digits.slice(1);
+      digits = digits.slice(0, 10);
+      let val = digits;
+      if (digits.length > 6) {
+        val = `(${digits.slice(0,3)}) ${digits.slice(3,6)}-${digits.slice(6)}`;
+      } else if (digits.length > 3) {
+        val = `(${digits.slice(0,3)}) ${digits.slice(3)}`;
       }
       e.target.value = val;
     });
 
+    // Sending can fail for reasons the customer can't act on, so show the
+    // problem above a form that still holds everything they typed.
+    function showSendFailure() {
+      formError.innerHTML =
+        '<strong>We couldn\'t send your request just now.</strong><br>' +
+        '<span style="font-weight:400;">Nothing you entered has been lost — you can try again, or call ' +
+        '<a href="tel:+14438295946" style="color:var(--navy);font-weight:600;">(443) 829-5946</a> ' +
+        'and we\'ll take the details over the phone.</span>';
+      formError.style.display = 'block';
+      formError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    function markInvalid(field, list) {
+      field.style.borderColor = '#e53e3e';
+      field.setAttribute('aria-invalid', 'true');
+      list.push(field);
+    }
+
     form.addEventListener('submit', (e) => {
       e.preventDefault();
-      console.log('Form submitted - starting validation');
+      formError.style.display = 'none';
 
-      // Simple validation
-      const required = form.querySelectorAll('[required]');
-      let valid = true;
-
-      required.forEach(field => {
+      const invalid = [];
+      form.querySelectorAll('[required]').forEach(field => {
         field.style.borderColor = '';
-        if (!field.value.trim()) {
-          field.style.borderColor = '#e53e3e';
-          valid = false;
-        }
+        field.removeAttribute('aria-invalid');
+        if (!field.value.trim()) markInvalid(field, invalid);
       });
 
-      if (!valid) {
-        console.log('Validation failed - missing required fields');
-        const first = form.querySelector('[required][style*="e53e3e"]');
-        if (first) first.focus();
+      // novalidate is set, so the browser's own type="email" check is off
+      const emailField = document.getElementById('email');
+      if (emailField.value.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailField.value.trim())) {
+        markInvalid(emailField, invalid);
+      }
+
+      // A half-typed number is worse than none — it looks like a real lead
+      if (phoneInput.value.trim() && phoneInput.value.replace(/\D/g, '').length !== 10) {
+        markInvalid(phoneInput, invalid);
+      }
+
+      if (invalid.length) {
+        invalid[0].focus();
+        invalid[0].scrollIntoView({ behavior: 'smooth', block: 'center' });
         return;
       }
 
-      console.log('Validation passed - preparing to send email');
+      if (typeof emailjs === 'undefined') {
+        showSendFailure();
+        return;
+      }
 
       // Show loading state
       submitBtn.disabled = true;
@@ -246,18 +296,15 @@
         from_name: document.getElementById('fullName').value,
         from_email: document.getElementById('email').value,
         phone: document.getElementById('phone').value,
+        address: document.getElementById('address').value || 'Not provided',
         work_type: document.getElementById('workType').value,
+        timeline: document.getElementById('timeline').value || 'Not specified',
         description: document.getElementById('description').value || 'No description provided'
       };
 
-      console.log('Template params prepared:', templateParams);
-      console.log('About to call EmailJS with service: service_ut61pkj, template: template_puxk7oa (new API)');
-
       // Send email via EmailJS (new API)
       emailjs.send('service_ut61pkj', 'template_puxk7oa', templateParams)
-        .then((response) => {
-          console.log('✅ Email sent successfully!', response);
-          console.log('Response status:', response.status);
+        .then(() => {
           // Success state
           form.style.display = 'none';
           successMsg.classList.add('show');
@@ -265,41 +312,17 @@
           successMsg.innerHTML = `
             <div style="font-size:2rem;margin-bottom:0.5rem;">✅</div>
             <strong>Thank you! Your estimate request has been sent.</strong><br>
-            <span style="font-weight:400;">We've received your information and will respond to <strong>${templateParams.from_email}</strong> within one business day. If you need to reach us sooner, call <a href="tel:+14438295946" style="color:var(--navy);font-weight:600;">(443) 829-5946</a>.</span>
+            <span style="font-weight:400;">Walter will be in touch within one business day to schedule your free on-site estimate. If you'd like to reach us sooner, call <a href="tel:+14438295946" style="color:var(--navy);font-weight:600;">(443) 829-5946</a>.</span>
           `;
           successMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
         })
-        .catch((error) => {
-          console.error('❌ Email sending failed:', error);
-          console.error('Error code:', error.status);
-          console.error('Error text:', error.text);
-          
-          // Show error details
-          let errorMsg = 'We encountered an issue sending the email. ';
-          if (error.status === 400) {
-            errorMsg += 'Template parameters may be incorrect. ';
-          } else if (error.status === 401) {
-            errorMsg += 'Authentication failed. ';
-          } else if (error.status === 422) {
-            errorMsg += 'Invalid service or template ID. ';
-          }
-          errorMsg += 'Please call (443) 829-5946 to submit your estimate directly.';
-          
-          form.style.display = 'none';
-          successMsg.classList.add('show');
-          successMsg.style.display = 'block';
-          successMsg.innerHTML = `
-            <div style="font-size:2rem;margin-bottom:0.5rem;">⚠️</div>
-            <strong>Technical Issue</strong><br>
-            <span style="font-weight:400;">${errorMsg}</span><br>
-            <a href="tel:+14438295946" style="color:var(--navy);font-weight:600;display:inline-block;margin-top:1rem;">Call (443) 829-5946</a>
-          `;
-          successMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        .catch(() => {
+          showSendFailure();
         })
         .finally(() => {
           // Reset button state
           submitBtn.disabled = false;
-          submitBtn.textContent = 'Submit Estimate Request →';
+          submitBtn.textContent = 'Send Estimate Request →';
         });
     });
 
