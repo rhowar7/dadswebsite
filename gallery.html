@@ -289,6 +289,14 @@
     <p style="margin-top:0.4rem;">Licensed &amp; Insured &bull; Serving Maryland for Over 46 Years</p>
   </footer>
 
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" id="lightboxClose">&times;</button>
+    <button class="lightbox-prev" id="lightboxPrev">&#8249;</button>
+    <img id="lightboxImg" src="" alt="" />
+    <button class="lightbox-next" id="lightboxNext">&#8250;</button>
+    <div class="lightbox-counter" id="lightboxCounter"></div>
+  </div>
+
   <script src="nav.js"></script>
   <script>
     // Gallery filtering
@@ -298,24 +306,22 @@
     filterBtns.forEach(btn => {
       btn.addEventListener('click', () => {
         const filter = btn.getAttribute('data-filter');
-        
+
         // Update active button
         filterBtns.forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
-        
+
         // Filter gallery items
         galleryItems.forEach(item => {
-          if (filter === 'all') {
+          if (filter === 'all' || item.getAttribute('data-category') === filter) {
             item.classList.remove('hidden');
           } else {
-            const category = item.getAttribute('data-category');
-            if (category === filter) {
-              item.classList.remove('hidden');
-            } else {
-              item.classList.add('hidden');
-            }
+            item.classList.add('hidden');
           }
         });
+
+        // The visible list changed, so any previous lightbox position is stale
+        current = 0;
       });
     });
 
@@ -323,16 +329,27 @@
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightboxImg');
     const lightboxCounter = document.getElementById('lightboxCounter');
-    const items = Array.from(document.querySelectorAll('.gallery-item:not(.hidden)'));
     let current = 0;
+
+    function getVisibleItems() {
+      return Array.from(document.querySelectorAll('.gallery-item:not(.hidden)'));
+    }
+
+    function showCurrent() {
+      const visibleItems = getVisibleItems();
+      if (!visibleItems.length) return;
+      const img = visibleItems[current].querySelector('img');
+      // currentSrc is whatever the browser actually loaded — the WebP from the
+      // <picture> source when it took that branch — so opening the lightbox
+      // reuses the cached image instead of fetching the full-size JPEG again.
+      lightboxImg.src = img.currentSrc || img.src;
+      lightboxImg.alt = img.alt;
+      lightboxCounter.textContent = (current + 1) + ' / ' + visibleItems.length;
+    }
 
     function openLightbox(index) {
       current = index;
-      const visibleItems = Array.from(document.querySelectorAll('.gallery-item:not(.hidden)'));
-      const clickedItem = visibleItems[index];
-      lightboxImg.src = clickedItem.querySelector('img').src;
-      lightboxImg.alt = clickedItem.querySelector('img').alt;
-      lightboxCounter.textContent = (index + 1) + ' / ' + visibleItems.length;
+      showCurrent();
       lightbox.classList.add('open');
       document.body.style.overflow = 'hidden';
     }
@@ -343,40 +360,21 @@
     }
 
     function showPrev() {
-      const visibleItems = Array.from(document.querySelectorAll('.gallery-item:not(.hidden)'));
-      current = (current - 1 + visibleItems.length) % visibleItems.length;
-      lightboxImg.src = visibleItems[current].querySelector('img').src;
-      lightboxImg.alt = visibleItems[current].querySelector('img').alt;
-      lightboxCounter.textContent = (current + 1) + ' / ' + visibleItems.length;
+      const count = getVisibleItems().length;
+      current = (current - 1 + count) % count;
+      showCurrent();
     }
 
     function showNext() {
-      const visibleItems = Array.from(document.querySelectorAll('.gallery-item:not(.hidden)'));
-      current = (current + 1) % visibleItems.length;
-      lightboxImg.src = visibleItems[current].querySelector('img').src;
-      lightboxImg.alt = visibleItems[current].querySelector('img').alt;
-      lightboxCounter.textContent = (current + 1) + ' / ' + visibleItems.length;
-    }
-
-    // Attach click handlers to gallery items
-    function attachGalleryHandlers() {
-      const visibleItems = Array.from(document.querySelectorAll('.gallery-item:not(.hidden)'));
-      visibleItems.forEach((item, i) => {
-        item.removeEventListener('click', handleGalleryClick);
-        item.addEventListener('click', () => openLightbox(i));
-      });
-    }
-
-    function handleGalleryClick(e) {
-      const index = Array.from(document.querySelectorAll('.gallery-item:not(.hidden)')).indexOf(this);
-      openLightbox(index);
+      const count = getVisibleItems().length;
+      current = (current + 1) % count;
+      showCurrent();
     }
 
     galleryItems.forEach(item => {
       item.addEventListener('click', function() {
-        const visibleItems = Array.from(document.querySelectorAll('.gallery-item:not(.hidden)'));
-        const index = visibleItems.indexOf(this);
-        openLightbox(index);
+        const index = getVisibleItems().indexOf(this);
+        if (index !== -1) openLightbox(index);
       });
     });
 
@@ -395,14 +393,6 @@
       if (e.key === 'ArrowRight') showNext();
     });
   </script>
-
-  <div class="lightbox" id="lightbox">
-    <button class="lightbox-close" id="lightboxClose">&times;</button>
-    <button class="lightbox-prev" id="lightboxPrev">&#8249;</button>
-    <img id="lightboxImg" src="" alt="" />
-    <button class="lightbox-next" id="lightboxNext">&#8250;</button>
-    <div class="lightbox-counter" id="lightboxCounter"></div>
-  </div>
 
 </body>
 </html>
