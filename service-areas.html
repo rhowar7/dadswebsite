@@ -263,7 +263,7 @@
   </div>
 
   <!-- Sticky Header with Phone Number -->
-  <div id="stickyHeader" style="position:fixed;top:0;left:0;right:0;background:var(--navy);color:var(--white);padding:0.75rem 1.5rem;text-align:center;font-weight:700;font-size:1.1rem;z-index:999;display:none;box-shadow:0 2px 8px rgba(0,0,0,0.15);transition:all 0.3s ease;">
+  <div id="stickyHeader" class="sticky-call-bar">
     <a href="tel:+14438295946" style="color:var(--gold);text-decoration:none;display:flex;align-items:center;justify-content:center;gap:0.5rem;">
       📞 Call Now: (443) 829-5946
     </a>
@@ -313,9 +313,9 @@
     window.addEventListener('scroll', () => {
       const scrolled = window.scrollY;
       if (scrolled > 300) {
-        stickyHeader.style.display = 'block';
+        stickyHeader.classList.add('show');
       } else {
-        stickyHeader.style.display = 'none';
+        stickyHeader.classList.remove('show');
       }
     });
   </script>

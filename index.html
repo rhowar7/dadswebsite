@@ -680,18 +680,6 @@
     </div>
   </section>
 
-  <!-- NEWSLETTER SIGNUP -->
-  <section style="background:linear-gradient(135deg, var(--navy) 0%, rgba(42,82,152,0.95) 100%);border-top:1px solid var(--gray-light);border-bottom:1px solid var(--gray-light);">
-    <div class="section" style="text-align:center;padding:3rem 1.5rem;">
-      <h2 style="color:var(--white);margin-bottom:0.5rem;font-size:1.8rem;">Get Home Improvement Tips &amp; Project Ideas</h2>
-      <p style="color:rgba(255,255,255,0.85);margin-bottom:2rem;font-size:1rem;max-width:500px;margin-left:auto;margin-right:auto;">Subscribe to our newsletter for design inspiration, contractor tips, and special offers from Walter's Home Improvement.</p>
-      <form style="display:flex;gap:0.8rem;max-width:500px;margin:0 auto;flex-wrap:wrap;justify-content:center;" onsubmit="return handleNewsletterSignup(event)">
-        <input type="email" placeholder="Your email address" required style="flex:1;min-width:200px;padding:0.85rem 1rem;border:none;border-radius:4px;font-size:0.95rem;" />
-        <button type="submit" style="padding:0.85rem 2rem;background:var(--gold);color:var(--navy);border:none;border-radius:4px;font-weight:700;cursor:pointer;font-size:0.95rem;transition:all var(--transition);" onmouseover="this.style.background='#e6b01e'" onmouseout="this.style.background='var(--gold)'">Subscribe</button>
-      </form>
-      <p style="color:rgba(255,255,255,0.65);font-size:0.85rem;margin-top:1rem;">✓ Spam-free • ✓ Unsubscribe anytime</p>
-    </div>
-  </section>
 
   <!-- COLLAPSIBLE FAQ SECTION -->
   <section class="section" style="background:var(--white);border-top:1px solid var(--gray-light);border-bottom:1px solid var(--gray-light);">
@@ -835,7 +823,7 @@
   </div>
 
   <!-- Sticky Header with Phone Number -->
-  <div id="stickyHeader" style="position:fixed;top:0;left:0;right:0;background:var(--navy);color:var(--white);padding:0.75rem 1.5rem;text-align:center;font-weight:700;font-size:1.1rem;z-index:999;display:none;box-shadow:0 2px 8px rgba(0,0,0,0.15);transition:all 0.3s ease;">
+  <div id="stickyHeader" class="sticky-call-bar">
     <a href="tel:+14438295946" style="color:var(--gold);text-decoration:none;display:flex;align-items:center;justify-content:center;gap:0.5rem;">
       📞 Call Now: (443) 829-5946
     </a>
@@ -900,34 +888,11 @@
     window.addEventListener('scroll', () => {
       const scrolled = window.scrollY;
       if (scrolled > 300) {
-        stickyHeader.style.display = 'block';
+        stickyHeader.classList.add('show');
       } else {
-        stickyHeader.style.display = 'none';
+        stickyHeader.classList.remove('show');
       }
     });
-
-    // Newsletter signup handler
-    function handleNewsletterSignup(e) {
-      e.preventDefault();
-      const email = e.target.querySelector('input[type="email"]').value;
-      const btn = e.target.querySelector('button');
-      const originalText = btn.textContent;
-
-      // Show success state
-      btn.textContent = '✓ Subscribed!';
-      btn.style.background = 'rgba(255, 255, 255, 0.2)';
-      e.target.querySelector('input[type="email"]').value = '';
-
-      // Reset after 3 seconds
-      setTimeout(() => {
-        btn.textContent = originalText;
-        btn.style.background = 'var(--gold)';
-      }, 3000);
-
-      // In production, you'd send this to your backend/email service
-      console.log('Newsletter signup:', email);
-      return false;
-    }
 
     // Show scroll popup after user scrolls
     const scrollPopup = document.getElementById('scrollPopup');

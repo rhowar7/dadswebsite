@@ -86,6 +86,31 @@ ul { list-style: none; }
   color: var(--white);
 }
 
+/* Scroll-triggered call bar. Sits below the sticky navbar rather than on
+   top of it, and stays out of the way on mobile where the floating call
+   button already covers this. */
+.sticky-call-bar {
+  position: fixed;
+  top: 68px;
+  left: 0;
+  right: 0;
+  display: none;
+  background: var(--navy);
+  color: var(--white);
+  padding: 0.75rem 1.5rem;
+  text-align: center;
+  font-weight: 700;
+  font-size: 1.1rem;
+  z-index: 90;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+.sticky-call-bar.show { display: block; }
+
+@media (max-width: 768px) {
+  .sticky-call-bar.show { display: none; }
+}
+
 /* Hamburger */
 .hamburger {
   display: none;
