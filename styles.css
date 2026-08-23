@@ -238,17 +238,16 @@ ul { list-style: none; }
 
 .hero-content { position: relative; max-width: 760px; margin: 0 auto; }
 
+/* The logo supplies its own background and border, so it needs no panel
+   behind it. Sized to its natural width so it is never upscaled. */
 .hero-logo {
   display: block;
-  width: min(420px, 100%);
-  max-height: 180px;
-  margin: 0 auto 1.5rem;
-  object-fit: contain;
+  width: auto;
+  max-width: min(340px, 100%);
+  margin: 0 auto 1.6rem;
   animation: slideDown 0.6s ease;
-  box-shadow: 0 24px 50px rgba(0, 0, 0, 0.18);
-  border-radius: 22px;
-  background: rgba(255, 255, 255, 0.06);
-  padding: 0.8rem;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.3);
+  border-radius: 6px;
 }
 
 .hero-badge {
