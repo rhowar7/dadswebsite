@@ -1,0 +1,16 @@
+---
+description: HTML page structure for Walter's Home Improvement static site
+globs: "**/*.html"
+alwaysApply: false
+---
+
+# HTML conventions
+
+- Mirror chrome from `@index.html`: `.navbar` → `.nav-inner` → brand + `#hamburger` + `#navLinks`.
+- Public pages: `index.html`, `gallery.html`, `reviews.html`, `faq.html`, `estimate.html`.
+- Include `<link rel="stylesheet" href="styles.css" />` and `<script src="nav.js"></script>`.
+- Mark the current page nav item with `class="active"`.
+- Prefer semantic landmarks (`nav`, `main`/`section`, `footer`) and one `h1` per page.
+- Keep contact facts identical: (443) 829-5946, (410) 557-6116, whoward45@gmail.com, Jarrettsville address.
+- Do not strip SEO meta / JSON-LD from `index.html` when editing the head.
+- `test_email.html` is a utility page — do not link it from public nav.

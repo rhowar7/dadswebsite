@@ -1,0 +1,14 @@
+---
+description: CSS conventions for Walter's Home Improvement brand styles
+globs: "**/*.css"
+alwaysApply: false
+---
+
+# CSS conventions
+
+- Extend tokens in `@styles.css` `:root` — `--navy`, `--navy-dark`, `--navy-light`, `--gold`, `--off-white`, `--gray`, `--gray-light`, `--radius`, `--shadow`, `--transition`.
+- Reuse existing component classes before inventing new ones.
+- Prefer shared rules in `styles.css` over duplicating the same inline styles across pages.
+- Avoid `!important` and avoid new global resets that fight the current base styles.
+- Keep the mobile nav breakpoint aligned with JS (`768px`).
+- Maintain navy/gold contrast for CTAs; primary buttons use gold, outline buttons stay light on dark sections.

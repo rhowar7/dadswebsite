@@ -1,0 +1,13 @@
+---
+description: Vanilla JS conventions for nav, gallery, and estimate form
+globs: "**/*.js"
+alwaysApply: false
+---
+
+# JavaScript conventions
+
+- Keep `@nav.js` focused on hamburger / mobile nav behavior with `#hamburger` and `#navLinks`.
+- Stay vanilla — no jQuery, React, or new npm packages unless explicitly requested.
+- Preserve resize reset above 768px and body scroll lock while the menu is open.
+- Page-specific scripts (gallery filters/lightbox, estimate form) stay in their HTML files unless extracting shared helpers is clearly beneficial.
+- Do not break EmailJS field mapping in the estimate form submit handler.
