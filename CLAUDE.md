@@ -120,7 +120,7 @@ arriving.
 
 ### images/
 
-332 files, only ~124 referenced. Presence in `images/` does not mean a page
+335 files, only ~127 referenced. Presence in `images/` does not mean a page
 uses it. Check with a grep across the HTML before assuming a file is live or
 safe to delete. Roughly 60% of gallery photos are small (~206px) Facebook
 downloads displayed larger than their true size; resizing cannot fix that, only
