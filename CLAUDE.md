@@ -20,12 +20,16 @@ framework in the repo.
   does not apply to the real site. Always confirm with
   `git merge-base --is-ancestor origin/main HEAD` before starting.
 
-The site is being migrated to GoDaddy cPanel hosting at
-`www.waltershomeimprovement.com`. `.htaccess`, `robots.txt` and `sitemap.xml`
-target that host and domain — **`.htaccess` does nothing on GitHub Pages**, and
-a `robots.txt` in a Pages *project* repo is served at `/dadswebsite/robots.txt`
-and never read by crawlers. Absolute URLs in the pages name the GoDaddy domain,
-so publishing to Pages and to GoDaddy are not equivalent.
+The production site is GitHub Pages serving `main` at the custom domain
+`https://www.waltershomeimprovement.com` (the `CNAME` file in the repo root is
+what binds the domain — do not delete or edit it). With the custom domain the
+site serves at the domain root, so `robots.txt` and `sitemap.xml` work as
+crawlers expect and the absolute URLs in the pages are correct.
+**`.htaccess` is inert on Pages** — it is kept only for a possible move to
+GoDaddy cPanel hosting (its https/www canonicalization is handled by Pages
+itself; its `/faq.html` 301 does not run, so that URL 404s). DNS lives in the
+owner's GoDaddy account: four apex A records to GitHub Pages plus
+`CNAME www -> rhowar7.github.io`.
 
 ## Running and verifying
 
@@ -128,12 +132,15 @@ re-exporting from originals can.
 
 ## Deploying
 
-The deployable site is a curated subset of the repo, not the whole thing. The
-root also holds one-off Python image scripts, `.bat` wrappers and internal `.md`
-guides — **anything placed in the web root is publicly served**, so these must
-be excluded from any upload. Build the package by copying the six `.html`
-files, `styles.css`, `nav.js`, `robots.txt`, `sitemap.xml`, `.htaccess`, and
-only the images the pages actually reference.
+Deploying is merging to `main` — GitHub Pages publishes it automatically within
+a couple of minutes. Note that **the whole repo is published**, including the
+one-off Python image scripts, `.bat` wrappers and internal `.md` guides in the
+root (and this file); anything genuinely sensitive must not live on `main`.
+
+If the site ever moves to cPanel-style hosting, the upload package is a curated
+subset, not the whole repo: the six `.html` files, `styles.css`, `nav.js`,
+`robots.txt`, `sitemap.xml`, `.htaccess`, `CNAME` excluded, and only the images
+the pages actually reference.
 
 The image scripts themselves are unreliable history: several are duplicates of
 each other, and they were run without Pillow installed, which silently produced
