@@ -12,14 +12,14 @@ Use these test values:
 - **Phone Number**: (443) 829-5946
 - **Email Address**: test@example.com
 - **Property Address**: 123 Test Street, Test City, MD 21084
-- **Type of Work Needed**: Kitchen Remodel
+- **Type of Work Needed**: Kitchen Remodel (or Bathroom Remodel)
 - **Project Description**: This is a test submission to verify email functionality
 - **Preferred Timeline**: As soon as possible
 
 ### Step 3: Submit the Form
 1. Click "Submit Estimate Request →"
-2. Watch for the success message to appear
-3. Check your browser's developer console (F12) for any error messages
+2. Watch for the green success message to appear (the form hides after a successful send)
+3. Optional: open the browser console (F12) if something looks wrong
 
 ### Step 4: Verify Email Receipt
 1. Check your Gmail inbox at whoward45@gmail.com

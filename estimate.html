@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Get a free, no-obligation home improvement estimate. Bathroom remodels, kitchens, decks, roofing, siding & more. Maryland contractor." />
-  <meta name="keywords" content="free estimate, home improvement estimate, bathroom estimate, kitchen estimate, Maryland contractor" />
+  <meta name="description" content="Get a free, no-obligation home improvement estimate from Walter's Home Improvement. Bathrooms, kitchens, decks, roofing, siding & more in Maryland." />
+  <meta name="keywords" content="free estimate, home improvement estimate, bathroom estimate, kitchen estimate, Maryland contractor, Jarrettsville" />
   <meta property="og:title" content="Free Estimate - Walter's Home Improvement" />
   <meta property="og:description" content="Request a free home improvement estimate. Fast response, no pressure. Licensed & insured." />
   <meta property="og:type" content="website" />
@@ -17,13 +17,14 @@
   <nav class="navbar">
     <div class="nav-inner">
       <a href="index.html" class="nav-brand">
-        <img src="images/NewLogo.jpg" alt="Walter's Home Improvement" height="50" style="display:block;" />
+        <img class="nav-logo" src="images/TopLeft.png" alt="Walter's Home Improvement" />
       </a>
-      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">
         <span></span><span></span><span></span>
       </button>
       <ul class="nav-links" id="navLinks">
         <li><a href="index.html">Home</a></li>
+        <li><a href="index.html#services">Services</a></li>
         <li><a href="reviews.html">Reviews</a></li>
         <li><a href="gallery.html">Gallery</a></li>
         <li><a href="faq.html">FAQ</a></li>
@@ -35,123 +36,169 @@
   <!-- PAGE HEADER -->
   <div class="page-header">
     <h1>Get a Free Estimate</h1>
-    <p>Fill out the form below and we'll get back to you within one business day.</p>
+    <p>Tell us about your project — we’ll follow up within one business day.</p>
   </div>
 
   <!-- FORM SECTION -->
   <section class="section">
     <div class="form-wrap">
 
-      <!-- Info Cards -->
-      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:1rem;margin-bottom:2.5rem;">
-        <div style="background:var(--white);border-radius:var(--radius);padding:1.2rem;box-shadow:var(--shadow);text-align:center;border:1px solid var(--gray-light);">
-          <div style="font-size:1.6rem;margin-bottom:0.4rem;">📞</div>
-          <div style="font-weight:700;color:var(--navy);font-size:0.9rem;">Call Us</div>
-          <div style="color:var(--gray);font-size:0.85rem;margin-top:0.2rem;">(443) 829-5946</div>
+      <ol class="estimate-steps" aria-label="How the estimate process works">
+        <li class="estimate-step">
+          <span class="estimate-step-num">1</span>
+          <div>
+            <strong>Share your project</strong>
+            <span>Quick form — about 2 minutes</span>
+          </div>
+        </li>
+        <li class="estimate-step">
+          <span class="estimate-step-num">2</span>
+          <div>
+            <strong>We review &amp; reach out</strong>
+            <span>Usually within 1 business day</span>
+          </div>
+        </li>
+        <li class="estimate-step">
+          <span class="estimate-step-num">3</span>
+          <div>
+            <strong>Get a clear quote</strong>
+            <span>No obligation, no pressure</span>
+          </div>
+        </li>
+      </ol>
+
+      <div class="estimate-info-grid">
+        <a class="estimate-info-card estimate-info-card-link" href="tel:+14438295946">
+          <div class="estimate-info-icon" aria-hidden="true">📞</div>
+          <div class="estimate-info-title">Prefer to call?</div>
+          <div class="estimate-info-text">(443) 829-5946</div>
+        </a>
+        <div class="estimate-info-card">
+          <div class="estimate-info-icon" aria-hidden="true">⚡</div>
+          <div class="estimate-info-title">Fast Response</div>
+          <div class="estimate-info-text">Within 1 business day</div>
         </div>
-        <div style="background:var(--white);border-radius:var(--radius);padding:1.2rem;box-shadow:var(--shadow);text-align:center;border:1px solid var(--gray-light);">
-          <div style="font-size:1.6rem;margin-bottom:0.4rem;">⚡</div>
-          <div style="font-weight:700;color:var(--navy);font-size:0.9rem;">Fast Response</div>
-          <div style="color:var(--gray);font-size:0.85rem;margin-top:0.2rem;">Within 1 business day</div>
-        </div>
-        <div style="background:var(--white);border-radius:var(--radius);padding:1.2rem;box-shadow:var(--shadow);text-align:center;border:1px solid var(--gray-light);">
-          <div style="font-size:1.6rem;margin-bottom:0.4rem;">✅</div>
-          <div style="font-weight:700;color:var(--navy);font-size:0.9rem;">100% Free</div>
-          <div style="color:var(--gray);font-size:0.85rem;margin-top:0.2rem;">No obligation estimate</div>
+        <div class="estimate-info-card">
+          <div class="estimate-info-icon" aria-hidden="true">✅</div>
+          <div class="estimate-info-title">100% Free</div>
+          <div class="estimate-info-text">No-obligation estimate</div>
         </div>
       </div>
 
       <div class="form-card">
         <h2 class="section-title" style="margin-bottom:0.4rem;">Estimate Request</h2>
         <div class="divider"></div>
-        <p style="color:var(--gray);font-size:0.9rem;margin-bottom:1.8rem;">Fields marked with <span style="color:#e53e3e;">*</span> are required.</p>
+        <p class="form-required-note">Fields marked with <span>*</span> are required.</p>
+
+        <div class="form-alert form-alert-error" id="formAlert" hidden role="alert"></div>
 
         <form id="estimateForm" novalidate>
 
           <div class="form-row">
             <div class="form-group">
               <label for="fullName">Full Name <span>*</span></label>
-              <input type="text" id="fullName" name="fullName" placeholder="John Smith" required autocomplete="name" />
+              <input type="text" id="fullName" name="fullName" placeholder="Jane Smith" required autocomplete="name" maxlength="100" />
+              <p class="field-error" id="fullNameError" hidden></p>
             </div>
             <div class="form-group">
               <label for="phone">Phone Number <span>*</span></label>
-              <input type="tel" id="phone" name="phone" placeholder="(443) 829-5946" required autocomplete="tel" />
+              <input type="tel" id="phone" name="phone" placeholder="(443) 555-1234" required autocomplete="tel" inputmode="tel" maxlength="20" />
+              <p class="field-error" id="phoneError" hidden></p>
             </div>
           </div>
 
           <div class="form-group">
             <label for="email">Email Address <span>*</span></label>
-            <input type="email" id="email" name="email" placeholder="john@example.com" required autocomplete="email" />
+            <input type="email" id="email" name="email" placeholder="you@example.com" required autocomplete="email" maxlength="120" />
+            <p class="field-error" id="emailError" hidden></p>
           </div>
 
           <div class="form-group">
             <label for="address">Property Address <span>*</span></label>
-            <input type="text" id="address" name="address" placeholder="123 Main St, City, State 00000" required autocomplete="street-address" />
+            <input type="text" id="address" name="address" placeholder="123 Main St, Bel Air, MD 21014" required autocomplete="street-address" maxlength="200" />
+            <p class="field-error" id="addressError" hidden></p>
           </div>
 
-          <div class="form-group">
-            <label for="workType">Type of Work Needed <span>*</span></label>
-            <select id="workType" name="workType" required>
-              <option value="" disabled selected>Select a service...</option>
-              <option value="roofing">Roofing — Replacement or Repair</option>
-              <option value="siding">Siding — Installation or Repair</option>
-              <option value="deck">Deck — New Build or Refinish</option>
-              <option value="painting-ext">Painting — Exterior</option>
-              <option value="painting-int">Painting — Interior</option>
-              <option value="gutters">Gutters — Replacement or Repair</option>
-              <option value="repairs">General Repairs</option>
-              <option value="other">Other / Not Sure</option>
-            </select>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="workType">Type of Work Needed <span>*</span></label>
+              <select id="workType" name="workType" required>
+                <option value="" disabled selected>Select a service...</option>
+                <option value="bathroom">Bathroom Remodel</option>
+                <option value="kitchen">Kitchen Remodel</option>
+                <option value="roofing">Roofing — Replacement or Repair</option>
+                <option value="siding">Siding — Installation or Repair</option>
+                <option value="deck">Deck / Porch — New Build or Refinish</option>
+                <option value="basement">Finished Basement</option>
+                <option value="addition">Addition / Sunroom</option>
+                <option value="painting-ext">Painting — Exterior</option>
+                <option value="painting-int">Painting — Interior</option>
+                <option value="flooring">Flooring</option>
+                <option value="gutters">Gutters — Replacement or Repair</option>
+                <option value="repairs">General Repairs</option>
+                <option value="other">Other / Not Sure</option>
+              </select>
+              <p class="field-error" id="workTypeError" hidden></p>
+            </div>
+            <div class="form-group">
+              <label for="timeline">Preferred Timeline</label>
+              <select id="timeline" name="timeline">
+                <option value="" disabled selected>When would you like to start?</option>
+                <option value="asap">As soon as possible</option>
+                <option value="1month">Within 1 month</option>
+                <option value="3months">Within 3 months</option>
+                <option value="flexible">Flexible / Just planning</option>
+              </select>
+            </div>
           </div>
 
           <div class="form-group">
             <label for="description">Project Description <span>*</span></label>
-            <textarea id="description" name="description" placeholder="Tell us a bit about the project — size, current condition, anything specific you want done..." required></textarea>
-          </div>
-
-          <div class="form-group">
-            <label for="timeline">Preferred Timeline</label>
-            <select id="timeline" name="timeline">
-              <option value="" disabled selected>When would you like work to start?</option>
-              <option value="asap">As soon as possible</option>
-              <option value="1month">Within 1 month</option>
-              <option value="3months">Within 3 months</option>
-              <option value="flexible">Flexible / Just planning</option>
-            </select>
+            <textarea id="description" name="description" placeholder="Share a few details — room size, current condition, materials you like, or anything else that helps us prepare." required maxlength="2000"></textarea>
+            <div class="field-meta">
+              <p class="field-error" id="descriptionError" hidden></p>
+              <span class="char-count" id="descriptionCount">0 / 2000</span>
+            </div>
           </div>
 
           <button type="submit" class="btn-submit" id="submitBtn">
-            Submit Estimate Request &rarr;
+            <span class="btn-submit-label">Submit Estimate Request →</span>
           </button>
 
-          <p class="form-note">We respect your privacy. Your information will never be shared or sold.</p>
+          <p class="form-note">
+            We respect your privacy. Your information will never be shared or sold.
+            Prefer the phone? Call <a href="tel:+14438295946">(443) 829-5946</a>.
+          </p>
         </form>
 
-        <div class="success-msg" id="successMsg" style="display: none;">
-          <div style="font-size:2rem;margin-bottom:0.5rem;">✅</div>
-          <strong>Thank you! Your request has been received.</strong><br>
-          <span style="font-weight:400;">Walter will be in touch within one business day. If you need to reach us sooner, call <a href="tel:+14438295946" style="color:var(--navy);font-weight:600;">(443) 829-5946</a>.</span>
-        </div>
+        <div class="success-msg" id="successMsg" role="status" aria-live="polite"></div>
       </div>
 
     </div>
   </section>
 
   <!-- PDF CONTRACT SECTION -->
-  <section class="section">
+  <section class="section estimate-contract-section">
     <div class="form-wrap">
-      <h2 class="section-title">Our Standard Contract</h2>
-      <div class="divider"></div>
-      <p style="color:var(--gray);font-size:0.9rem;margin-bottom:1.8rem;">Review our service agreement and terms below:</p>
-      
-      <div style="width:100%;height:800px;border:1px solid var(--gray-light);border-radius:var(--radius);overflow:hidden;background:#f5f5f5;box-shadow:var(--shadow);">
-        <iframe src="Dads New Contract 2026_Updatd February.pdf" type="application/pdf" width="100%" height="100%" style="border:none;"></iframe>
-      </div>
-      
-      <div style="margin-top:1.5rem;text-align:center;">
-        <a href="Dads New Contract 2026_Updatd February.pdf" download class="btn btn-primary" style="display:inline-block;">
-          ⬇️ Download PDF Contract
-        </a>
+      <div class="contract-card">
+        <h2 class="section-title">Our Standard Contract</h2>
+        <div class="divider"></div>
+        <p class="contract-intro">Review our service agreement anytime. You’re welcome to download a copy before we start work.</p>
+
+        <div class="contract-viewer">
+          <iframe
+            src="Dads%20New%20Contract%202026_Updatd%20February.pdf"
+            title="Walter's Home Improvement standard contract PDF"
+            loading="lazy"
+          ></iframe>
+        </div>
+
+        <div class="contract-actions">
+          <a href="Dads%20New%20Contract%202026_Updatd%20February.pdf" download class="btn btn-primary">
+            Download PDF Contract
+          </a>
+          <a href="faq.html" class="btn btn-outline contract-secondary-btn">Read FAQs</a>
+        </div>
       </div>
     </div>
   </section>
@@ -163,125 +210,228 @@
 
   <footer>
     <p>&copy; 2025 <strong>Walter's Home Improvement</strong> &mdash; All rights reserved.</p>
-    <p style="margin-top:0.4rem;">Licensed &amp; Insured &bull; Serving the local area since 1998</p>
+    <p style="margin-top:0.4rem;">Licensed &amp; Insured &bull; Serving Maryland for Over 46 Years &bull; <a href="tel:+14438295946" style="color: var(--gold); text-decoration: none;">(443) 829-5946</a></p>
   </footer>
 
   <script src="nav.js"></script>
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/index.min.js"></script>
   <script>
-    // Initialize EmailJS with your public key
-    emailjs.init('9_j-uvK3QR4l9VL-C');
-
     const form = document.getElementById('estimateForm');
     const successMsg = document.getElementById('successMsg');
     const submitBtn = document.getElementById('submitBtn');
-
-    // Basic phone formatting
+    const submitLabel = submitBtn.querySelector('.btn-submit-label');
+    const formAlert = document.getElementById('formAlert');
     const phoneInput = document.getElementById('phone');
-    phoneInput.addEventListener('input', (e) => {
-      let val = e.target.value.replace(/\D/g, '');
-      if (val.length >= 10) {
-        val = `(${val.slice(0,3)}) ${val.slice(3,6)}-${val.slice(6,10)}`;
+    const description = document.getElementById('description');
+    const descriptionCount = document.getElementById('descriptionCount');
+
+    const fieldIds = ['fullName', 'phone', 'email', 'address', 'workType', 'description'];
+    const EMAILJS_PUBLIC_KEY = '9_j-uvK3QR4l9VL-C';
+    const EMAILJS_SERVICE_ID = 'service_5mxrcrc';
+    const EMAILJS_TEMPLATE_ID = 'template_puxk7oa';
+
+    let emailjsReady = false;
+    try {
+      if (typeof emailjs !== 'undefined' && emailjs.init) {
+        emailjs.init(EMAILJS_PUBLIC_KEY);
+        emailjsReady = true;
       }
-      e.target.value = val;
+    } catch (err) {
+      emailjsReady = false;
+    }
+
+    function setFieldError(id, message) {
+      const field = document.getElementById(id);
+      const error = document.getElementById(id + 'Error');
+      if (!field || !error) return;
+      field.classList.toggle('is-invalid', Boolean(message));
+      field.setAttribute('aria-invalid', message ? 'true' : 'false');
+      if (message) {
+        error.hidden = false;
+        error.textContent = message;
+      } else {
+        error.hidden = true;
+        error.textContent = '';
+      }
+    }
+
+    function clearErrors() {
+      fieldIds.forEach((id) => setFieldError(id, ''));
+      formAlert.hidden = true;
+      formAlert.textContent = '';
+    }
+
+    function showAlert(message) {
+      formAlert.hidden = false;
+      formAlert.textContent = message;
+      formAlert.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    function digitsOnly(value) {
+      return (value || '').replace(/\D/g, '');
+    }
+
+    function isValidEmail(value) {
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+    }
+
+    function validateForm() {
+      clearErrors();
+      let valid = true;
+      let firstInvalid = null;
+
+      const fullName = document.getElementById('fullName').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const address = document.getElementById('address').value.trim();
+      const workType = document.getElementById('workType').value;
+      const projectDescription = description.value.trim();
+
+      if (!fullName) {
+        setFieldError('fullName', 'Please enter your full name.');
+        valid = false;
+        firstInvalid = firstInvalid || document.getElementById('fullName');
+      }
+
+      const phoneDigits = digitsOnly(phone);
+      if (!phone) {
+        setFieldError('phone', 'Please enter a phone number.');
+        valid = false;
+        firstInvalid = firstInvalid || phoneInput;
+      } else if (phoneDigits.length < 10) {
+        setFieldError('phone', 'Enter a valid 10-digit phone number.');
+        valid = false;
+        firstInvalid = firstInvalid || phoneInput;
+      }
+
+      if (!email) {
+        setFieldError('email', 'Please enter your email address.');
+        valid = false;
+        firstInvalid = firstInvalid || document.getElementById('email');
+      } else if (!isValidEmail(email)) {
+        setFieldError('email', 'Enter a valid email address.');
+        valid = false;
+        firstInvalid = firstInvalid || document.getElementById('email');
+      }
+
+      if (!address) {
+        setFieldError('address', 'Please enter the property address.');
+        valid = false;
+        firstInvalid = firstInvalid || document.getElementById('address');
+      }
+
+      if (!workType) {
+        setFieldError('workType', 'Please select the type of work needed.');
+        valid = false;
+        firstInvalid = firstInvalid || document.getElementById('workType');
+      }
+
+      if (!projectDescription) {
+        setFieldError('description', 'Please add a short project description.');
+        valid = false;
+        firstInvalid = firstInvalid || description;
+      } else if (projectDescription.length < 10) {
+        setFieldError('description', 'Add a bit more detail (at least a sentence).');
+        valid = false;
+        firstInvalid = firstInvalid || description;
+      }
+
+      if (!valid && firstInvalid) {
+        firstInvalid.focus();
+        showAlert('Please fix the highlighted fields and try again.');
+      }
+
+      return valid;
+    }
+
+    phoneInput.addEventListener('input', (e) => {
+      const digits = digitsOnly(e.target.value).slice(0, 10);
+      let formatted = digits;
+      if (digits.length >= 7) {
+        formatted = `(${digits.slice(0, 3)}) ${digits.slice(3, 6)}-${digits.slice(6)}`;
+      } else if (digits.length >= 4) {
+        formatted = `(${digits.slice(0, 3)}) ${digits.slice(3)}`;
+      } else if (digits.length >= 1) {
+        formatted = `(${digits}`;
+      }
+      e.target.value = formatted;
+      setFieldError('phone', '');
     });
+
+    description.addEventListener('input', () => {
+      descriptionCount.textContent = `${description.value.length} / 2000`;
+      setFieldError('description', '');
+    });
+    descriptionCount.textContent = `${description.value.length} / 2000`;
+
+    fieldIds.forEach((id) => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.addEventListener('input', () => setFieldError(id, ''));
+      el.addEventListener('change', () => setFieldError(id, ''));
+    });
+
+    function setSubmitting(isSubmitting) {
+      submitBtn.disabled = isSubmitting;
+      submitBtn.classList.toggle('is-loading', isSubmitting);
+      submitLabel.textContent = isSubmitting ? 'Sending…' : 'Submit Estimate Request →';
+    }
+
+    function showResult(html, isError) {
+      form.hidden = true;
+      successMsg.classList.add('show');
+      successMsg.classList.toggle('is-error', Boolean(isError));
+      successMsg.innerHTML = html;
+      successMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
 
     form.addEventListener('submit', (e) => {
       e.preventDefault();
-      console.log('Form submitted');
+      if (!validateForm()) return;
 
-      // Simple validation
-      const required = form.querySelectorAll('[required]');
-      let valid = true;
-
-      required.forEach(field => {
-        field.style.borderColor = '';
-        if (!field.value.trim()) {
-          field.style.borderColor = '#e53e3e';
-          valid = false;
-        }
-      });
-
-      if (!valid) {
-        const first = form.querySelector('[required][style*="e53e3e"]');
-        if (first) first.focus();
+      if (!emailjsReady) {
+        showResult(`
+          <div class="result-icon" aria-hidden="true">⚠️</div>
+          <strong>Online form is temporarily unavailable.</strong>
+          <p>Please call <a href="tel:+14438295946">(443) 829-5946</a> and we’ll take your estimate request directly.</p>
+          <p><a href="tel:+14438295946" class="btn btn-primary result-call-btn">Call (443) 829-5946</a></p>
+        `, true);
         return;
       }
 
-      // Show loading state
-      submitBtn.disabled = true;
-      submitBtn.textContent = 'Sending...';
-      console.log('Validation passed, sending email...');
+      setSubmitting(true);
 
-      // Prepare email parameters
       const templateParams = {
         to_email: 'whoward45@gmail.com',
-        from_name: document.getElementById('fullName').value,
-        from_email: document.getElementById('email').value,
-        phone: document.getElementById('phone').value,
-        address: document.getElementById('address').value,
+        from_name: document.getElementById('fullName').value.trim(),
+        from_email: document.getElementById('email').value.trim(),
+        phone: document.getElementById('phone').value.trim(),
+        address: document.getElementById('address').value.trim(),
         work_type: document.getElementById('workType').value,
-        description: document.getElementById('description').value,
+        description: description.value.trim(),
         timeline: document.getElementById('timeline').value || 'Not specified'
       };
 
-      console.log('Template params:', templateParams);
-      console.log('Service ID: service_5mxrcrc');
-      console.log('Template ID: template_puxk7oa');
-
-      // Send email via EmailJS
-      emailjs.send('service_5mxrcrc', 'template_puxk7oa', templateParams)
-        .then((response) => {
-          console.log('✅ Email sent successfully!', response);
-          console.log('Response status:', response.status);
-          // Success state
-          form.style.display = 'none';
-          successMsg.classList.add('show');
-          successMsg.style.display = 'block';
-          successMsg.innerHTML = `
-            <div style="font-size:2rem;margin-bottom:0.5rem;">✅</div>
-            <strong>Thank you! Your estimate request has been sent.</strong><br>
-            <span style="font-weight:400;">We've received your information and will respond to <strong>${templateParams.from_email}</strong> within one business day. If you need to reach us sooner, call <a href="tel:+14438295946" style="color:var(--navy);font-weight:600;">(443) 829-5946</a>.</span>
-          `;
-          successMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams)
+        .then(() => {
+          showResult(`
+            <div class="result-icon" aria-hidden="true">✅</div>
+            <strong>Thank you! Your estimate request has been sent.</strong>
+            <p>We’ve received your information and will respond to <strong>${templateParams.from_email}</strong> within one business day.</p>
+            <p>Need us sooner? Call <a href="tel:+14438295946">(443) 829-5946</a>.</p>
+          `, false);
         })
-        .catch((error) => {
-          console.error('❌ Email sending failed:', error);
-          console.error('Error code:', error.status);
-          console.error('Error text:', error.text);
-          
-          // Show error details
-          let errorMsg = 'We encountered an issue sending the email. ';
-          if (error.status === 400) {
-            errorMsg += 'Template parameters may be incorrect. ';
-          } else if (error.status === 401) {
-            errorMsg += 'Authentication failed. ';
-          } else if (error.status === 422) {
-            errorMsg += 'Invalid service or template ID. ';
-          }
-          errorMsg += 'Please call (443) 829-5946 to submit your estimate directly.';
-          
-          form.style.display = 'none';
-          successMsg.classList.add('show');
-          successMsg.style.display = 'block';
-          successMsg.innerHTML = `
-            <div style="font-size:2rem;margin-bottom:0.5rem;">⚠️</div>
-            <strong>Technical Issue</strong><br>
-            <span style="font-weight:400;">${errorMsg}</span><br>
-            <a href="tel:+14438295946" style="color:var(--navy);font-weight:600;display:inline-block;margin-top:1rem;">Call (443) 829-5946</a>
-          `;
-          successMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        .catch(() => {
+          showResult(`
+            <div class="result-icon" aria-hidden="true">⚠️</div>
+            <strong>We couldn’t send the form just now.</strong>
+            <p>Please call <a href="tel:+14438295946">(443) 829-5946</a> and we’ll take your estimate request directly. You can also try again in a few minutes.</p>
+            <p><a href="tel:+14438295946" class="btn btn-primary result-call-btn">Call (443) 829-5946</a></p>
+          `, true);
         })
         .finally(() => {
-          // Reset button state
-          submitBtn.disabled = false;
-          submitBtn.textContent = 'Submit Estimate Request →';
+          setSubmitting(false);
         });
-    });
-
-    // Clear error styling on input
-    form.querySelectorAll('input, select, textarea').forEach(field => {
-      field.addEventListener('input', () => { field.style.borderColor = ''; });
     });
   </script>
 </body>
