@@ -24,6 +24,10 @@
 # ---------------------------------------------------------------------------
 ErrorDocument 404 /404.html
 
+# The FAQ page was retired; send any old bookmark or search result home
+# rather than to the 404.
+Redirect 301 /faq.html /
+
 # ---------------------------------------------------------------------------
 # Compression. The HTML and CSS shrink by roughly 70% over the wire.
 # Images and PDFs are already compressed, so they are left alone.

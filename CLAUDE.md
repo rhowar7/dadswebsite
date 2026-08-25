@@ -50,20 +50,20 @@ phone; a failed send leaves the form and its contents intact.
 ### Everything is duplicated per page
 
 There are no includes, partials or templates. The navbar and footer are
-hand-copied into all seven pages, so a nav change is seven edits. Concretely:
+hand-copied into all six pages, so a nav change is six edits. Concretely:
 
 - The phone number appears ~38 times as `tel:+14438295946` and ~32 times as the
   display string `(443) 829-5946`. **Changing it means searching for both
   forms** across every `.html`.
 - Footers have drifted before — index/service-areas carry a rich three-column
-  footer, the rest a two-line stub. Check all seven when touching either.
+  footer, the rest a two-line stub. Check all six when touching either.
 
 Prefer adding a shared class in `styles.css` over another inline copy.
 
 ### CSS lives in three places
 
 1. `styles.css` — the shared stylesheet.
-2. Page-local `<style>` blocks in the `<head>` of `estimate.html`, `faq.html`,
+2. Page-local `<style>` blocks in the `<head>` of `estimate.html`,
    `gallery.html` and `reviews.html`. Gallery's lightbox and filter styling
    lives here, invisible from `styles.css`.
 3. Inline `style=""` attributes — pervasive, ~222 on `index.html` alone, where
@@ -131,7 +131,7 @@ re-exporting from originals can.
 The deployable site is a curated subset of the repo, not the whole thing. The
 root also holds one-off Python image scripts, `.bat` wrappers and internal `.md`
 guides — **anything placed in the web root is publicly served**, so these must
-be excluded from any upload. Build the package by copying the seven `.html`
+be excluded from any upload. Build the package by copying the six `.html`
 files, `styles.css`, `nav.js`, `robots.txt`, `sitemap.xml`, `.htaccess`, and
 only the images the pages actually reference.
 
