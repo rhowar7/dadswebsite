@@ -454,10 +454,25 @@ ul { list-style: none; }
   box-shadow: 0 12px 28px rgba(212,160,23,0.5);
 }
 
+/* White-on-transparent — only legible over the dark hero/CTA bands. */
 .btn-outline {
   background: transparent;
   color: var(--white);
   border-color: rgba(255,255,255,0.6);
+}
+
+/* Same shape for light backgrounds. .btn-outline over white renders white
+   text on white, which is how the homepage phone CTA became invisible. */
+.btn-outline-navy {
+  background: transparent;
+  color: var(--navy);
+  border-color: var(--navy);
+}
+
+.btn-outline-navy:hover {
+  background: var(--navy);
+  color: var(--white);
+  border-color: var(--navy);
 }
 
 .btn-outline:hover {
