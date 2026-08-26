@@ -78,22 +78,16 @@
       <div class="form-card">
         <h2 class="section-title" style="margin-bottom:0.4rem;">Get Your Free Estimate</h2>
         <div class="divider"></div>
-        <p style="color:var(--gray);font-size:0.9rem;margin-bottom:1.8rem;">Quick and easy — we'll follow up with details. Fields marked with <span style="color:#e53e3e;">*</span> are required.</p>
-
-        <!-- Two Options for Contact -->
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:2.5rem;">
-          <button type="button" class="contact-method-btn active" id="formMethodBtn" style="padding:1rem;border:2px solid var(--navy);background:var(--navy);color:var(--white);border-radius:var(--radius);font-weight:600;cursor:pointer;transition:all var(--transition);">📝 Online Form</button>
-          <button type="button" class="contact-method-btn" id="phoneMethodBtn" style="padding:1rem;border:2px solid var(--gold);background:transparent;color:var(--navy);border-radius:var(--radius);font-weight:600;cursor:pointer;transition:all var(--transition);">📞 Call Now</button>
-        </div>
+        <p style="color:var(--gray);font-size:0.95rem;margin-bottom:1.8rem;">Four quick questions and you're done — Walter calls you back within one business day. Fields marked <span style="color:#e53e3e;">*</span> are required.</p>
 
         <noscript>
-          <div style="background:#fff5f5;border:1.5px solid #e53e3e;border-radius:var(--radius);padding:1.2rem;margin-bottom:1.5rem;">
-            <strong>This form needs JavaScript to send.</strong><br>
-            <span style="font-weight:400;">Please call
+          <div style="background:#fffaf0;border:1.5px solid var(--gold);border-radius:var(--radius);padding:1.2rem;margin-bottom:1.5rem;">
+            <strong>JavaScript is turned off in your browser.</strong><br>
+            <span style="font-weight:400;">The form below still works &mdash; you'll just land on a
+            plain confirmation page after sending. Or call
             <a href="tel:+14438295946" style="color:var(--navy);font-weight:700;">(443) 829-5946</a>
             and we'll take your details over the phone.</span>
           </div>
-          <style>#formMethod form { display: none; }</style>
         </noscript>
 
         <!-- Online Form -->
@@ -101,83 +95,72 @@
           <!-- Shown in place if sending fails, so the customer keeps what they typed -->
           <div id="formError" role="alert" style="display:none;background:#fff5f5;border:1.5px solid #e53e3e;border-radius:var(--radius);padding:1.1rem;margin-bottom:1.5rem;color:var(--navy);"></div>
 
-          <form id="estimateForm" novalidate>
+          <!-- A real action and POST method mean that even if this page's JavaScript
+               never runs, the form still submits properly to Formspree instead of
+               firing a GET with the customer's details in the query string. -->
+          <form id="estimateForm" action="https://formspree.io/f/xgawggqe" method="POST" novalidate>
+            <!-- Spam trap: real people never see it, bots fill it in and Formspree
+                 silently discards the submission. -->
+            <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none;" />
+
 
             <div class="form-row">
               <div class="form-group">
-                <label for="fullName">Full Name <span>*</span></label>
+                <label for="fullName">Your name <span>*</span></label>
                 <input type="text" id="fullName" name="fullName" placeholder="John Smith" required autocomplete="name" />
               </div>
               <div class="form-group">
-                <label for="phone">Phone Number <span>*</span></label>
-                <input type="tel" id="phone" name="phone" placeholder="(443) 829-5946" required autocomplete="tel" />
+                <label for="phone">Best phone number <span>*</span></label>
+                <input type="tel" id="phone" name="phone" placeholder="(443) 829-5946" required autocomplete="tel" inputmode="tel" />
               </div>
-            </div>
-
-            <div class="form-group">
-              <label for="email">Email Address <span>*</span></label>
-              <input type="email" id="email" name="email" placeholder="john@example.com" required autocomplete="email" />
-            </div>
-
-            <div class="form-group">
-              <label for="workType">Type of Work Needed <span>*</span></label>
-              <select id="workType" name="workType" required>
-                <option value="" disabled selected>Select a service...</option>
-                <option value="roofing">Roofing — Replacement or Repair</option>
-                <option value="siding">Siding — Installation or Repair</option>
-                <option value="bathroom">Bathroom Remodel</option>
-                <option value="kitchen">Kitchen Remodel</option>
-                <option value="deck">Deck — New Build or Refinish</option>
-                <option value="painting-ext">Painting — Exterior</option>
-                <option value="painting-int">Painting — Interior</option>
-                <option value="gutters">Gutters — Replacement or Repair</option>
-                <option value="repairs">General Repairs</option>
-                <option value="other">Other / Not Sure</option>
-              </select>
             </div>
 
             <div class="form-row">
               <div class="form-group">
-                <label for="address">Property Town or ZIP</label>
-                <input type="text" id="address" name="address" placeholder="Jarrettsville, or 21084" autocomplete="postal-code" />
+                <label for="workType">What do you need done? <span>*</span></label>
+                <select id="workType" name="workType" required>
+                  <option value="" disabled selected>Choose one...</option>
+                  <option value="bathroom">Bathroom Remodel</option>
+                  <option value="kitchen">Kitchen Remodel</option>
+                  <option value="roofing">Roofing</option>
+                  <option value="siding">Siding</option>
+                  <option value="deck">Deck or Porch</option>
+                  <option value="fencing">Fencing</option>
+                  <option value="additions">Addition or Sunroom</option>
+                  <option value="basement">Finished Basement</option>
+                  <option value="flooring">Flooring or Tile</option>
+                  <option value="painting">Painting</option>
+                  <option value="gutters">Gutters</option>
+                  <option value="repairs">General Repairs</option>
+                  <option value="other">Something else / not sure</option>
+                </select>
               </div>
               <div class="form-group">
-                <label for="timeline">Preferred Timeline</label>
-                <select id="timeline" name="timeline">
-                  <option value="" disabled selected>When would you like to start?</option>
-                  <option value="asap">As soon as possible</option>
-                  <option value="1month">Within 1 month</option>
-                  <option value="3months">Within 3 months</option>
-                  <option value="flexible">Flexible / just planning</option>
-                </select>
+                <label for="town">Town or ZIP code <span>*</span></label>
+                <input type="text" id="town" name="town" placeholder="Jarrettsville, or 21084" required autocomplete="postal-code" />
+                <p class="field-hint">So we know the job is in our area.</p>
               </div>
             </div>
 
             <div class="form-group">
-              <label for="description">Brief Project Description</label>
-              <textarea id="description" name="description" placeholder="Quick overview of what you need done..." style="min-height:80px;"></textarea>
+              <label for="email">Email address <span class="optional">(optional)</span></label>
+              <input type="email" id="email" name="email" placeholder="john@example.com" autocomplete="email" />
+              <p class="field-hint">Only if you'd like the estimate in writing — otherwise we'll just call you.</p>
+            </div>
+
+            <div class="form-group">
+              <label for="description">Anything else we should know? <span class="optional">(optional)</span></label>
+              <textarea id="description" name="description" placeholder="What needs doing, and roughly when you'd like it started."></textarea>
             </div>
 
             <button type="submit" class="btn-submit" id="submitBtn">
-              Send Estimate Request &rarr;
+              Request My Free Estimate &rarr;
             </button>
 
-            <p class="form-note">We respect your privacy. Your information will never be shared or sold.</p>
+            <p class="form-note">No obligation, no pressure. Your details are never shared or sold.</p>
+            <p class="form-note" style="margin-top:0.6rem;">Would rather just talk it through?
+              <a href="tel:+14438295946" style="font-weight:700;">Call (443) 829-5946</a> — 7 days a week, 7:00 AM to 8:00 PM.</p>
           </form>
-        </div>
-
-        <!-- Phone Consultation Option -->
-        <div id="phoneMethod" style="display:none;text-align:center;padding:2rem 1rem;">
-          <div style="font-size:3rem;margin-bottom:1rem;">📞</div>
-          <h3 style="color:var(--navy);margin-bottom:0.5rem;font-size:1.2rem;">Call For Immediate Help</h3>
-          <p style="color:var(--gray);margin-bottom:2rem;font-size:0.95rem;">Speak directly with Walter for a quick phone consultation and estimate.</p>
-          <a href="tel:+14438295946" style="display:inline-block;background:var(--gold);color:var(--navy);padding:1.2rem 2rem;border-radius:var(--radius);font-weight:700;font-size:1.1rem;transition:all var(--transition);">
-            📱 (443) 829-5946
-          </a>
-          <p style="color:var(--gray);font-size:0.85rem;margin-top:1.5rem;line-height:1.6;">
-            <strong>Available 7 days a week</strong><br>
-            7:00 AM – 8:00 PM
-          </p>
         </div>
 
         <div class="success-msg" id="successMsg" style="display: none;">
@@ -203,45 +186,7 @@
   </footer>
 
   <script src="nav.js"></script>
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js" defer></script>
   <script>
-    // The CDN script is deferred, so it has not run yet when this executes.
-    // Initialise on first use instead, which also means a blocked or slow CDN
-    // can never stop the form's own handlers from binding.
-    let emailjsReady = false;
-    function ensureEmailJS() {
-      if (typeof emailjs === 'undefined') return false;
-      if (!emailjsReady) {
-        emailjs.init({ publicKey: '9_j-uvK3QR4l9VL-C' });
-        emailjsReady = true;
-      }
-      return true;
-    }
-
-    // Contact Method Switcher
-    const formMethodBtn = document.getElementById('formMethodBtn');
-    const phoneMethodBtn = document.getElementById('phoneMethodBtn');
-    const formMethod = document.getElementById('formMethod');
-    const phoneMethod = document.getElementById('phoneMethod');
-
-    formMethodBtn.addEventListener('click', () => {
-      formMethod.style.display = 'block';
-      phoneMethod.style.display = 'none';
-      formMethodBtn.style.background = 'var(--navy)';
-      formMethodBtn.style.color = 'var(--white)';
-      phoneMethodBtn.style.background = 'transparent';
-      phoneMethodBtn.style.color = 'var(--navy)';
-    });
-
-    phoneMethodBtn.addEventListener('click', () => {
-      formMethod.style.display = 'none';
-      phoneMethod.style.display = 'block';
-      phoneMethodBtn.style.background = 'var(--gold)';
-      phoneMethodBtn.style.color = 'var(--navy)';
-      formMethodBtn.style.background = 'transparent';
-      formMethodBtn.style.color = 'var(--navy)';
-    });
-
     const form = document.getElementById('estimateForm');
     const successMsg = document.getElementById('successMsg');
     const submitBtn = document.getElementById('submitBtn');
@@ -309,11 +254,12 @@
 
       const invalid = [];
       const LABEL = { fullName: 'your name', phone: 'a phone number',
-                      email: 'an email address', workType: 'the type of work' };
+                      town: 'your town or ZIP code', workType: 'the type of work' };
       form.querySelectorAll('[required]').forEach(field => {
         clearError(field);
         if (!field.value.trim()) {
-          markInvalid(field, invalid, 'Please enter ' + (LABEL[field.id] || 'this') + '.');
+          const verb = field.tagName === 'SELECT' ? 'Please choose ' : 'Please enter ';
+          markInvalid(field, invalid, verb + (LABEL[field.id] || 'this') + '.');
         }
       });
 
@@ -334,31 +280,34 @@
         return;
       }
 
-      if (!ensureEmailJS()) {
-        showSendFailure();
-        return;
-      }
-
-      // Show loading state
       submitBtn.disabled = true;
       submitBtn.textContent = 'Sending...';
 
-      // Prepare email parameters
-      const templateParams = {
-        to_email: 'whoward45@gmail.com',
-        from_name: document.getElementById('fullName').value,
-        from_email: document.getElementById('email').value,
-        phone: document.getElementById('phone').value,
-        address: document.getElementById('address').value || 'Not provided',
-        work_type: document.getElementById('workType').value,
-        timeline: document.getElementById('timeline').value || 'Not specified',
-        description: document.getElementById('description').value || 'No description provided'
+      // Human-readable keys, because Formspree uses them verbatim as the labels
+      // in the email that lands in the inbox.
+      const workSelect = document.getElementById('workType');
+      const payload = {
+        'Name': document.getElementById('fullName').value.trim(),
+        'Phone': document.getElementById('phone').value.trim(),
+        'Work needed': workSelect.options[workSelect.selectedIndex].text,
+        'Town or ZIP': document.getElementById('town').value.trim(),
+        'Details': document.getElementById('description').value.trim() || 'None given',
+        '_subject': 'Estimate request from ' + document.getElementById('fullName').value.trim()
       };
 
-      // Send email via EmailJS (new API)
-      emailjs.send('service_ut61pkj', 'template_puxk7oa', templateParams)
-        .then(() => {
-          // Success state
+      // Formspree reads a field literally named "email" to set Reply-To, so a
+      // reply goes straight back to the customer. Left out entirely when blank,
+      // rather than sent as an empty string.
+      const customerEmail = document.getElementById('email').value.trim();
+      if (customerEmail) payload.email = customerEmail;
+
+      fetch(form.action, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(payload)
+      })
+        .then((res) => {
+          if (!res.ok) throw new Error('Formspree returned ' + res.status);
           form.style.display = 'none';
           successMsg.classList.add('show');
           successMsg.style.display = 'block';
@@ -373,9 +322,8 @@
           showSendFailure();
         })
         .finally(() => {
-          // Reset button state
           submitBtn.disabled = false;
-          submitBtn.textContent = 'Send Estimate Request →';
+          submitBtn.textContent = 'Request My Free Estimate →';
         });
     });
 

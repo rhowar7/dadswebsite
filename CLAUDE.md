@@ -67,9 +67,9 @@ Prefer adding a shared class in `styles.css` over another inline copy.
 ### CSS lives in three places
 
 1. `styles.css` — the shared stylesheet.
-2. Page-local `<style>` blocks in the `<head>` of `estimate.html`,
-   `gallery.html` and `reviews.html`. Gallery's lightbox and filter styling
-   lives here, invisible from `styles.css`.
+2. Page-local `<style>` blocks in the `<head>` of `gallery.html` and
+   `reviews.html`. Gallery's lightbox and filter styling lives here, invisible
+   from `styles.css`.
 3. Inline `style=""` attributes — pervasive, ~222 on `index.html` alone, where
    whole grid layouts are built inline. **Media queries cannot reach inline
    styles**, so a responsive fix applied in `styles.css` will silently fail on
@@ -105,22 +105,33 @@ traps Tab across its three controls, restores on close) and reuses
 
 ### estimate.html
 
-The only page with a third-party dependency: EmailJS from jsDelivr, loaded
-`defer` and initialised lazily on first send. This is deliberate — as a
-blocking script it sat ahead of the inline script that binds every handler, so
-a slow or blocked CDN meant no working form at all.
+Six fields — name, phone, work type, town/ZIP, email, description — of which
+the first four are required. Email is deliberately optional: a contractor calls
+back, and demanding an address costs leads. `timeline` and the old
+"Online Form / Call Now" tab switcher were removed for the same reason. Keep
+the field count down; every field added is a lead lost.
 
-The form is `novalidate` with no `action`, so all validation is hand-rolled and
-a JS failure would otherwise submit a GET with the customer's details in the
-query string; a `<noscript>` block hides the form and directs to the phone
-number instead. Validation collects invalid fields into an array, writes a
-per-field message into a `role="alert"` element, and focuses the first one. A
-send failure must keep the form and its contents and show `#formError` — never
-hide the form, which discards the lead.
+**No third-party script.** The form posts JSON to Formspree
+(`https://formspree.io/f/xgawggqe`) with `fetch`. The previous EmailJS
+integration failed silently in production for months — its Gmail OAuth token
+expired, EmailJS returned `412 Gmail_API: Invalid grant`, and because EmailJS
+only relays and never stores, every lead in that window ceased to exist.
+Formspree records the submission before emailing it, so a delivery failure is
+recoverable from its dashboard. Do not reintroduce a CDN-loaded form library.
 
-`to_email` is passed as a template parameter. Do not remove it without first
-confirming the EmailJS template's To field has been hardcoded, or leads stop
-arriving.
+The payload uses human-readable keys (`Name`, `Phone`, `Work needed`,
+`Town or ZIP`, `Details`) because Formspree prints them verbatim as the labels
+in the email. A field literally named `email` sets Reply-To, and is omitted
+entirely when the customer leaves it blank. `_subject` sets the subject line;
+`_gotcha` is a hidden spam trap Formspree honours.
+
+The form carries a real `action` and `method="POST"`, so it still submits
+correctly if the page's JavaScript never runs — that is why the `<noscript>`
+block no longer hides it. It is also `novalidate`, so all validation is
+hand-rolled: invalid fields are collected into an array, each gets a message
+in a `role="alert"` element, and the first is focused. A send failure must keep
+the form and its contents and show `#formError` — never hide the form, which
+discards the lead.
 
 ### images/
 

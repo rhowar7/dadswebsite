@@ -1226,6 +1226,21 @@ footer strong { color: var(--white); }
 
 .form-group label span { color: #e53e3e; margin-left: 2px; }
 
+/* "(optional)" sits in the same slot as the required asterisk, so it has to
+   opt out of the red. */
+.form-group label span.optional {
+  color: var(--gray);
+  font-weight: 400;
+  text-transform: none;
+}
+
+.field-hint {
+  font-size: 0.8rem;
+  color: var(--gray);
+  margin: 0.35rem 0 0;
+  line-height: 1.45;
+}
+
 .form-group input,
 .form-group select,
 .form-group textarea {
@@ -1345,7 +1360,8 @@ footer strong { color: var(--white); }
   .form-group select,
   .form-group textarea { font-size: 16px; padding: 0.65rem 0.9rem; }
   .form-group textarea { min-height: 100px; }
-  .btn-submit { padding: 0.9rem; font-size: 1rem; }
+  /* The one button the whole page exists for - keep it a comfortable thumb target. */
+  .btn-submit { padding: 1rem; font-size: 1.02rem; min-height: 52px; }
 
   /* Sections */
   .section { padding: 3rem 1rem; }
