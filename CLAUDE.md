@@ -143,6 +143,11 @@ re-exporting from originals can.
 
 ## Deploying
 
+The owner has given standing approval to deploy small changes — copy tweaks,
+fixes, anything the suites cover — without asking each time, provided the
+browser suites pass first. Anything structural (new pages, changed services or
+pricing, the form's wiring) still gets confirmed before it goes live.
+
 Deploying is merging to `main` — GitHub Pages publishes it automatically within
 a couple of minutes. Note that **the whole repo is published**, including the
 one-off Python image scripts, `.bat` wrappers and internal `.md` guides in the
