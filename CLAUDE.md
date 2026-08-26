@@ -59,8 +59,12 @@ hand-copied into all six pages, so a nav change is six edits. Concretely:
 - The phone number appears ~38 times as `tel:+14438295946` and ~32 times as the
   display string `(443) 829-5946`. **Changing it means searching for both
   forms** across every `.html`.
-- Footers have drifted before — index/service-areas carry a rich three-column
-  footer, the rest a two-line stub. Check all six when touching either.
+- The footer is now identical on all six pages and its layout lives in
+  `styles.css` (`.footer-grid`, `.footer-col`, `.footer-bottom`), so a styling
+  change is one CSS edit. The *markup* is still hand-copied six times — a
+  content change (a new link, changed hours) is still six edits. Only
+  `index.html` differs: its Services link is `#services`, the others
+  `index.html#services`.
 
 Prefer adding a shared class in `styles.css` over another inline copy.
 
@@ -85,6 +89,17 @@ produces invisible buttons.
 122 hand-maintained `.gallery-item` divs, each one line, categorised by
 `data-category` (`bathrooms`, `kitchens`, `decks`, `siding`, `other`) and
 filtered client-side by toggling a `.hidden` class.
+
+**The grid serves thumbnails, the lightbox serves originals.** Photos wider
+than 700px have a 500px copy in `images/thumbs/`; the tile's `src` points at
+the thumbnail and `data-full` at the original. `showCurrent()` reads
+`data-full` first and only falls back to `currentSrc` for the smaller photos
+that never got a thumbnail. **If you add a photo, either give it both
+attributes or leave it un-thumbnailed — a `src` pointing at a thumbnail with
+no `data-full` shows a blurry image in the lightbox.** Regenerate with the
+same recipe: Pillow, `ImageOps.exif_transpose`, 500px wide, quality 82,
+progressive. Every tile also carries `width`/`height` so the grid does not
+shift as photos load.
 
 Two ordering constraints in the inline script, both of which have caused real
 breakage:
@@ -135,7 +150,8 @@ discards the lead.
 
 ### images/
 
-335 files, only ~127 referenced. Presence in `images/` does not mean a page
+335 files plus `images/thumbs/` (38 generated gallery thumbnails), only ~127
+originals referenced. Presence in `images/` does not mean a page
 uses it. Check with a grep across the HTML before assuming a file is live or
 safe to delete. Roughly 60% of gallery photos are small (~206px) Facebook
 downloads displayed larger than their true size; resizing cannot fix that, only
