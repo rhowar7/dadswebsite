@@ -148,6 +148,18 @@ in a `role="alert"` element, and the first is focused. A send failure must keep
 the form and its contents and show `#formError` — never hide the form, which
 discards the lead.
 
+### Analytics
+
+Cloudflare Web Analytics, added as a `type="module"` beacon before `</body>` on
+all six pages. The token in the snippet is a site identifier, not a secret. It
+sets no cookies, so the site needs no consent banner — do not add anything that
+does without revisiting that. Only one beacon snippet may render per page.
+
+The beacon is the site's only third-party script. It is deliberately harmless
+if it fails: `type="module"` defers it, and a suite check loads every page with
+the beacon blocked to confirm nothing else breaks. Do not let anything
+load-bearing move onto a CDN — see the estimate form's history above.
+
 ### images/
 
 335 files plus `images/thumbs/` (38 generated gallery thumbnails), only ~127

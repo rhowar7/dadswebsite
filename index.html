@@ -804,5 +804,9 @@
       }
     });
   </script>
+  <!-- Cloudflare Web Analytics. No cookies, so no consent banner is needed.
+       type="module" defers it, so a slow or blocked beacon cannot hold up the
+       page or interfere with the estimate form's own script. -->
+  <script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "b96180d684e6465a962b915eee216401"}'></script>
 </body>
 </html>
