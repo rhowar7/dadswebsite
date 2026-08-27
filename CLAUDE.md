@@ -86,7 +86,7 @@ produces invisible buttons.
 
 ### gallery.html
 
-122 hand-maintained `.gallery-item` divs, each one line, categorised by
+118 hand-maintained `.gallery-item` divs, each one line, categorised by
 `data-category` (`bathrooms`, `kitchens`, `decks`, `siding`, `other`) and
 filtered client-side by toggling a `.hidden` class.
 
@@ -177,9 +177,13 @@ browser suites pass first. Anything structural (new pages, changed services or
 pricing, the form's wiring) still gets confirmed before it goes live.
 
 Deploying is merging to `main` — GitHub Pages publishes it automatically within
-a couple of minutes. Note that **the whole repo is published**, including the
-one-off Python image scripts, `.bat` wrappers and internal `.md` guides in the
-root (and this file); anything genuinely sensitive must not live on `main`.
+a couple of minutes. The repo is built by Jekyll (there is no `.nojekyll`), and
+`_config.yml` lists the files kept out of what gets served: the one-off Python
+scripts, the `.bat` wrappers, the internal `.md` guides and this file. They
+used to be readable at `https://www.waltershomeimprovement.com/<filename>`.
+**Add any new script or internal note to that `exclude` list**, and still keep
+anything genuinely sensitive off `main` entirely — an exclude is not a secret
+store.
 
 If the site ever moves to cPanel-style hosting, the upload package is a curated
 subset, not the whole repo: the six `.html` files, `styles.css`, `nav.js`,

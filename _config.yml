@@ -1,0 +1,20 @@
+# GitHub Pages publishes this whole repository, which means the one-off image
+# scripts, the .bat wrappers and the internal guides in the root were all
+# readable at https://www.waltershomeimprovement.com/<filename>. None of them
+# hold credentials, but they are internal working notes about the business's
+# site and have no reason to be public.
+#
+# Jekyll builds this site (there is no .nojekyll), so listing them here keeps
+# them in the repository for our own use while leaving them out of what gets
+# served. Add any future script or note to this list.
+exclude:
+  - "*.py"
+  - "*.bat"
+  - CLAUDE.md
+  - GALLERY_ENHANCEMENT_README.md
+  - IMAGE_ENHANCEMENT_README.md
+  - PILLOW_INSTALLATION_GUIDE.md
+  - README.md
+  - vendor
+  - Gemfile
+  - Gemfile.lock
