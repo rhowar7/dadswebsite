@@ -54,14 +54,14 @@ phone; a failed send leaves the form and its contents intact.
 ### Everything is duplicated per page
 
 There are no includes, partials or templates. The navbar and footer are
-hand-copied into all six pages, so a nav change is six edits. Concretely:
+hand-copied into all twelve pages, so a nav change is twelve edits. Concretely:
 
 - The phone number appears ~38 times as `tel:+14438295946` and ~32 times as the
   display string `(443) 829-5946`. **Changing it means searching for both
   forms** across every `.html`.
-- The footer is now identical on all six pages and its layout lives in
+- The footer is now identical on all twelve pages and its layout lives in
   `styles.css` (`.footer-grid`, `.footer-col`, `.footer-bottom`), so a styling
-  change is one CSS edit. The *markup* is still hand-copied six times — a
+  change is one CSS edit. The *markup* is still hand-copied twelve times — a
   content change (a new link, changed hours) is still six edits. Only
   `index.html` differs: its Services link is `#services`, the others
   `index.html#services`.
@@ -118,6 +118,29 @@ handling; they are not real buttons. The lightbox manages focus (moves in,
 traps Tab across its three controls, restores on close) and reuses
 `img.currentSrc` so opening a photo does not refetch it.
 
+### Service pages
+
+Six pages — `bathroom-remodeling.html`, `kitchen-remodeling.html`,
+`decks-and-porches.html`, `siding.html`, `additions-and-sunrooms.html`,
+`flooring-and-tile.html` — exist so a search for "bathroom remodel Bel Air"
+can land on a page about bathrooms rather than the homepage. Roofing, painting
+and basements deliberately have no page: the gallery has no photos of them,
+and a thin page ranks worse than none. Add photos first, then a page.
+
+They are generated, not hand-written: the template and per-page copy live in
+the session scratchpad (`gen_services.py`), which pulls every photo from the
+tiles already in `gallery.html` (thumbnail `src`, real `width`/`height`) so a
+service page can never show a photo the gallery doesn't. Their layout is the
+`.svc-*` block in `styles.css`. If you edit one page by hand, edit all six the
+same way, or regenerate. Each carries `BreadcrumbList` + `Service` JSON-LD;
+the homepage service cards link to them via `.service-link`, and they are in
+`sitemap.xml`.
+
+The copy makes only claims the site already made elsewhere (46 years, MHIC
+#16421, free on-site estimate, one-business-day callback, the materials named
+on the homepage cards). Do not add specifics — prices, brands, timelines,
+guarantees — without the owner supplying them.
+
 ### estimate.html
 
 Six fields — name, phone, work type, town/ZIP, email, description — of which
@@ -151,7 +174,7 @@ discards the lead.
 ### Analytics
 
 Cloudflare Web Analytics, added as a `type="module"` beacon before `</body>` on
-all six pages. The token in the snippet is a site identifier, not a secret. It
+all twelve pages. The token in the snippet is a site identifier, not a secret. It
 sets no cookies, so the site needs no consent banner — do not add anything that
 does without revisiting that. Only one beacon snippet may render per page.
 
@@ -186,7 +209,7 @@ anything genuinely sensitive off `main` entirely — an exclude is not a secret
 store.
 
 If the site ever moves to cPanel-style hosting, the upload package is a curated
-subset, not the whole repo: the six `.html` files, `styles.css`, `nav.js`,
+subset, not the whole repo: the twelve `.html` files, `styles.css`, `nav.js`,
 `robots.txt`, `sitemap.xml`, `.htaccess`, `CNAME` excluded, and only the images
 the pages actually reference.
 

@@ -1586,3 +1586,81 @@ footer p[style*="var(--gray)"] {
 .skip-link:focus {
   left: 0;
 }
+
+/* ===== SERVICE PAGES (bathroom-remodeling.html etc.) =====
+   Six pages generated from one template; all their layout lives here so a
+   change is one CSS edit rather than six. */
+.svc-intro { max-width: 760px; }
+.svc-lead { font-size: 1.12rem; color: var(--text); margin: 0 0 1rem; }
+.svc-intro p { color: var(--gray); line-height: 1.7; margin-bottom: 1rem; }
+
+.svc-columns {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin: 2.5rem 0 3rem;
+}
+.svc-columns h3 { color: var(--navy); font-size: 1.15rem; margin-bottom: 0.9rem; }
+.svc-list, .svc-steps { margin: 0; padding: 0; }
+.svc-list li {
+  list-style: none;
+  padding-left: 1.6rem;
+  position: relative;
+  margin-bottom: 0.55rem;
+  color: var(--text);
+}
+.svc-list li::before { content: "✓"; position: absolute; left: 0; color: var(--gold); font-weight: 700; }
+.svc-steps { list-style: decimal; padding-left: 1.4rem; color: var(--text); }
+.svc-steps li { margin-bottom: 0.7rem; line-height: 1.6; }
+.svc-steps strong { color: var(--navy); }
+
+.svc-gallery-title { color: var(--navy); font-size: 1.15rem; margin-bottom: 1rem; }
+.svc-photos {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1rem;
+}
+.svc-photo {
+  display: block;
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--gray-light);
+  aspect-ratio: 4 / 3;
+  box-shadow: var(--shadow);
+}
+.svc-photo img { width: 100%; height: 100%; object-fit: cover; transition: transform var(--transition); }
+.svc-photo:hover img { transform: scale(1.04); }
+.svc-photo:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
+.svc-more { text-align: center; margin: 1.5rem 0 0; }
+
+.svc-cta {
+  margin-top: 3rem;
+  background: linear-gradient(135deg, rgba(42,82,152,0.08) 0%, rgba(212,160,23,0.08) 100%);
+  border-radius: var(--radius);
+  padding: 2rem;
+  text-align: center;
+}
+.svc-cta h3 { color: var(--navy); margin-bottom: 0.5rem; }
+.svc-cta p { color: var(--gray); margin-bottom: 1.5rem; }
+.svc-cta-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+.svc-others { margin-top: 3rem; border-top: 1px solid var(--gray-light); padding-top: 1.5rem; }
+.svc-others h3 { color: var(--navy); font-size: 1rem; margin-bottom: 0.7rem; }
+.svc-others ul { display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; padding: 0; margin: 0; list-style: none; }
+.svc-others a { color: var(--navy-light); font-weight: 600; }
+.svc-others a:hover { color: var(--gold-ink, #8a6508); text-decoration: underline; }
+
+/* homepage service cards that have their own page */
+.service-card .service-link {
+  display: inline-block;
+  margin-top: 0.9rem;
+  color: var(--navy-light);
+  font-weight: 700;
+  font-size: 0.92rem;
+}
+.service-card .service-link:hover { color: #8a6508; text-decoration: underline; }
+
+@media (max-width: 480px) {
+  /* Two-up on phones, like the gallery, so eight photos are not eight screens of scrolling */
+  .svc-photos { grid-template-columns: repeat(2, 1fr); gap: 0.6rem; }
+}
